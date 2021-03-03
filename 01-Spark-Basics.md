@@ -77,7 +77,7 @@ Instructions:
 
 A typical Spark development goes like this:
 
-![workflow](images/workflow.png)
+![](images/workflow.png)
 
 Next logical step going from a laptop is to run your code on the dev/staging cluster.
 
@@ -96,5 +96,3 @@ After completing this chapter:
 * Comfortable with Spark UI (typically port 4040)
 * Have access to the dev cluster
 * Can deploy Spark code on dev cluster
-
-
