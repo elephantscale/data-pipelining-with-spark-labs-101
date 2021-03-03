@@ -1,3 +1,5 @@
+<link rel='stylesheet' href='assets/css/main.css'/>
+
 # 01 - Spark Basics
 
 ## Objective

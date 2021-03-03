@@ -1,3 +1,5 @@
+<link rel='stylesheet' href='assets/css/main.css'/>
+
 # Spark DataFrames
 
 ## Objective

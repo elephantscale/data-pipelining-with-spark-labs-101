@@ -1,3 +1,5 @@
+<link rel='stylesheet' href='assets/css/main.css'/>
+
 # Visa Learning Path
 
 (To generate pdf/word/html run `./gen.sh`)

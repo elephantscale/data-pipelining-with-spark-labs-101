@@ -3,6 +3,7 @@
 rm -rf output *.out *.zip
 mkdir -p output/docx  output/pdf  output/html output/tmp
 cp -r images/   output/html/
+cp -r assets/   output/html/
 
 for md in *.md
 do
