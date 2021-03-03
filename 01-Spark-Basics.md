@@ -42,21 +42,25 @@ List your answers in about 3-4 bullets.
 
 ### Essential Reading
 
-* Spark basics
-    - [Chapter 1. Introduction to Apache Spark: A Unified Analytics Engine](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch01.html#introduction_to_apache_spark_a_unified_a)  from book [Learning Spark - 2nd Edition](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
+#### Spark basics
 
-* What's new in Spark 3  
-    - Spark 3 is a big release that added a slew of performance related enhancements.
-    - **Spark 3 - a 10 year evolution** - a very nice video recap of Spark's evolution and new features in Spark 3.  [Link-1](https://databricks.com/session_na20/wednesday-morning-keynotes) ,   [Link-2](https://youtu.be/OLJKIogf2nU) 
+- [Chapter 1. Introduction to Apache Spark: A Unified Analytics Engine](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch01.html#introduction_to_apache_spark_a_unified_a)  from book [Learning Spark - 2nd Edition](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
+
+#### What's new in Spark 3  
+
+- Spark 3 is a big release that added a slew of performance related enhancements.
+- [Deep dive into Spark 3](https://databricks.com/session_na20/deep-dive-into-the-new-features-of-apache-spark-3-0)
+- **Spark 3 - a 10 year evolution** - a very nice video recap of Spark's evolution and new features in Spark 3.  [Link-1](https://databricks.com/session_na20/wednesday-morning-keynotes) ,   [Link-2](https://youtu.be/OLJKIogf2nU) 
 
 ### Extra Reading
 
-* Spark Use Cases
-    - Databricks has an extensive collection of [customer success stories](https://databricks.com/customers).  Worth a browse
-    - [BigDataUseCases.info](http://bigdatausecases.info/technologies/spark) has a large collection of Spark usescases  Here are some highlights
-        - [Migrating from RDBMS to Spark at DBS Bank](http://bigdatausecases.info/entry/migrating-from-rdbms-data-warehouses-to-apache-spark)
-        - [Spark based Data Lake](http://bigdatausecases.info/entry/apache-spark-based-reliable-data-ingestion-in-datalake)
-        - [Spark pipelines in production](http://bigdatausecases.info/entry/flowspec-apache-spark-pipelines-in-production)
+#### Spark Use Cases
+
+- Databricks has an extensive collection of [customer success stories](https://databricks.com/customers).  Worth a browse
+- [BigDataUseCases.info](http://bigdatausecases.info/technologies/spark) has a large collection of Spark usescases  Here are some highlights
+    - [Migrating from RDBMS to Spark at DBS Bank](http://bigdatausecases.info/entry/migrating-from-rdbms-data-warehouses-to-apache-spark)
+    - [Spark based Data Lake](http://bigdatausecases.info/entry/apache-spark-based-reliable-data-ingestion-in-datalake)
+    - [Spark pipelines in production](http://bigdatausecases.info/entry/flowspec-apache-spark-pipelines-in-production)
 
 ## Code
 

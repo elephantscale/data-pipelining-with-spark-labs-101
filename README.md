@@ -10,3 +10,4 @@ Labs are here (TBD)
 
 - [01 - Spark Basics](01-Spark-Basics.md)
 - [02 - DataFrames](02-Spark-DataFrames.md)
+- [03 - Spark SQL](03-Spark-SQL.md)
