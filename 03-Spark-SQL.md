@@ -1,6 +1,6 @@
 <link rel='stylesheet' href='assets/css/main.css'/>
 
-# 03 - Spark SQL
+# Spark SQL
 
 ## Objective
 

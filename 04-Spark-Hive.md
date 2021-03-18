@@ -1,6 +1,6 @@
 <link rel='stylesheet' href='assets/css/main.css'/>
 
-# 04 - Spark and Hive
+# Spark and Hive
 
 ## Objective
 

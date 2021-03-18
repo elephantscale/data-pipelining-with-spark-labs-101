@@ -1,16 +1,18 @@
 <link rel='stylesheet' href='assets/css/main.css'/>
 
-# Visa Learning Path
+# Effective Spark
 
 (To generate pdf/word/html run `./gen.sh`)
 
-## Effective Spark
-
 Labs are here (TBD)
 
-### Basics
+## Basics
 
 - [01 - Spark Basics](01-Spark-Basics.md)
 - [02 - DataFrames](02-Spark-DataFrames.md)
 - [03 - Spark SQL](03-Spark-SQL.md)
 - [04 - Spark and Hive](04-Spark-Hive.md)
+
+## Intermediate
+
+- [05 - Spark and HDFS](05-Spark-HDFS.md)
