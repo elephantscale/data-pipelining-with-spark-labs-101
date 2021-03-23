@@ -16,3 +16,4 @@ Labs are here (TBD)
 ## Intermediate
 
 - [05 - Spark and HDFS](05-Spark-HDFS.md)
+- [06 - Spark and YARN](06-Spark-YARN.md)
