@@ -11,7 +11,7 @@ Spark can cache data in memory and disk.  This is a very powerful feature.  In t
 - Spark caching mechanics
 - How to effectively use caching
 
-## Knowledge Checl
+## Knowledge Check
 
 **When is it appropriate to cache data in Spark?**
 

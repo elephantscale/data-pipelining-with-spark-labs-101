@@ -68,7 +68,6 @@ Non interactive runs (production).  Note the difference where 'driver' is runnin
 - In this lab, you will submit a Spark job
 - And tune memory settings to optimize runtime
 
-
 ## Review and Key Takeaways
 
 After completing this chapter
