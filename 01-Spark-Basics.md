@@ -83,7 +83,7 @@ Instructions:
 
 A typical Spark development goes like this:
 
-![](images/workflow.png)
+![](assets/images/workflow.png)
 
 Next logical step going from a laptop is to run your code on the dev/staging cluster.
 
