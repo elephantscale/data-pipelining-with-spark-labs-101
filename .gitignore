@@ -6,3 +6,10 @@ logs
 output
 *.html
 
+## Python
+__pycache__/
+*.py[cod]
+*$py.class
+## Jupyter Notebook
+.ipynb_checkpoints
+
