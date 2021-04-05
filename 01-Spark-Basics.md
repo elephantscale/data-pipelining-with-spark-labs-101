@@ -68,29 +68,23 @@ List your answers in about 3-4 bullets.
 
 ## Labs
 
-### Lab Setup
-
-Please download the Spark labs repo (TBD)
-
 ### Lab-1 : Running Spark locally
 
 Though Spark is designed to run on clusters, it is highly recommended that you have a local Spark setup.  This allows you to experiment with Spark without needing to connect to a cluster.
 
-Instructions:
-    - [Chapter 2. Downloading Apache Spark and Getting Started](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch02.html)  from book [Learning Spark - 2nd Edition](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
+[lab-1 instructions](01-basics/lab-1-local-spark-install.md)
+
+You may also read [Chapter 2. Downloading Apache Spark and Getting Started](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch02.html)  from book [Learning Spark - 2nd Edition](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
 
 ### Lab-2: Get access to Spark dev/staging cluster
 
 A typical Spark development goes like this:
 
-![](assets/images/workflow.png)
+<img src="assets/images/workflow.png" style="width:90%;">
 
 Next logical step going from a laptop is to run your code on the dev/staging cluster.
 
-Refer to the following documentation on how to get access to dev/cluster.
-    - Step 1 : TODO
-    - Step 2 : TODO
-    - Step 3 : Kicking the tires : Run this code (TODO) to test your access to the cluster and data.
+[Lab-2 instructions](01-basics/lab-2-spark-cluster.md)
 
 ## Review and Key Takeaways
 
