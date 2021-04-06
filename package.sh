@@ -42,7 +42,8 @@ do
         #echo "$input_file --> $output_file"
         pandoc "$input_file" -f markdown -t html -o  "$output_file"
         # convert all md links to html links
-        sed 's/\.md/\.html/g' < "$output_file"  | sed 's/\>md\</\>html\</g'  > a.html
+        cat "$output_file"  | sed 's/\.md/\.html/g'  | sed 's/\>md\</\>html\</g'   > a.html
+        #cat "$output_file"  | sed 's/\.md/\.html/g'  | sed 's/\>md\</\>html\</g' | sed 's/\.ipynb/\.html/g'  > a.html
         mv -f a.html  "$output_file"
     fi
 done

@@ -68,6 +68,8 @@ List your answers in about 3-4 bullets.
 
 ## Labs
 
+Labs are in **`01-basics`** folder
+
 ### Lab-1 : Running Spark locally
 
 Though Spark is designed to run on clusters, it is highly recommended that you have a local Spark setup.  This allows you to experiment with Spark without needing to connect to a cluster.

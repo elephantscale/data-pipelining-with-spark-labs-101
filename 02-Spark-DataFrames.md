@@ -44,24 +44,28 @@ Dataframes are the preferred way to program Spark.  In this section you will lea
 
 ## Labs
 
+Labs are in **`02-dataframes`** folder
+
 ### Lab 1 - Creating a DataFrame programatically
 
-Create a small DataFrame programatically 
+Create a small DataFrame programatically
 
-Start with this notebook (TODO)
+Lab-1 notebook: `02-dataframes/dataframes-1.ipynb`  ([html version](02-dataframes/dataframes-1.html))
 
 ### Lab 2 - Read a Dataframe from file
 
-- Start with this notebook (TODO)
 - Read the CSV file from disk
 - Print out the schema
 - Perform an aggregate query on a column
+
+Lab-2 notebook: `02-dataframes/dataframes-2.ipynb`  ([html version](02-dataframes/dataframes-2.html))
 
 ### Lab 3 - Specify Schema
 
 - We will continue with above lab.
 - How ever we will specify the schema while loading data
 
+Lab-3 notebook: `02-dataframes/dataframes-3.ipynb`  ([html version](02-dataframes/dataframes-3.html))
 
 ## Review and Key Takeaways
 
