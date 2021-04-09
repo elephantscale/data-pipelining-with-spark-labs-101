@@ -31,13 +31,11 @@ Dataframes are the preferred way to program Spark.  In this section you will lea
 
 **What are some of the optimizations Catalyst can do?**
 
-## References
-
-### Essential Reading
+## Essential Reading
 
 * [Ch 3 - Apache Spark’s Structured APIs](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch03.html)  from book [Learning Spark - 2nd Edition](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
 
-### Extra Reading
+## Extra Reading
 
 * [A Tale of Three Apache Spark APIs: RDDs vs DataFrames and Datasets](https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html) - A good article explaining the evolution of data models in Spark
 * [Apache Spark RDD vs DataFrame vs DataSet](https://data-flair.training/blogs/apache-spark-rdd-vs-dataframe-vs-dataset/) - a good tutorial covering various aspects of data models

@@ -2,10 +2,6 @@
 
 # Effective Spark
 
-(To generate pdf/word/html run `./gen.sh`)
-
-Labs are here (TBD)
-
 ## Basics
 
 - [01 - Spark Basics](01-Spark-Basics.md)

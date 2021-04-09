@@ -38,23 +38,21 @@ List your answers in about 3-4 bullets.
 
 **Q6 - What do we mean by 'lazy evaluation'?  What are the implications of Lazy evaluation?**
 
-## References
+## Essential Reading
 
-### Essential Reading
-
-#### Spark basics
+### Spark basics
 
 - [Chapter 1. Introduction to Apache Spark: A Unified Analytics Engine](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch01.html#introduction_to_apache_spark_a_unified_a)  from book [Learning Spark - 2nd Edition](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
 
-#### What's new in Spark 3  
+### What's new in Spark 3  
 
 - Spark 3 is a big release that added a slew of performance related enhancements.
 - [Deep dive into Spark 3](https://databricks.com/session_na20/deep-dive-into-the-new-features-of-apache-spark-3-0)
 - **Spark 3 - a 10 year evolution** - a very nice video recap of Spark's evolution and new features in Spark 3.  [Link-1](https://databricks.com/session_na20/wednesday-morning-keynotes) ,   [Link-2](https://youtu.be/OLJKIogf2nU) 
 
-### Extra Reading
+## Extra Reading
 
-#### Spark Use Cases
+### Spark Use Cases
 
 - Databricks has an extensive collection of [customer success stories](https://databricks.com/customers).  Worth a browse
 - [BigDataUseCases.info](http://bigdatausecases.info/technologies/spark) has a large collection of Spark usescases  Here are some highlights

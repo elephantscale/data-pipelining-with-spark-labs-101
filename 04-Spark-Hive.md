@@ -21,22 +21,20 @@ In this module you will learn about using Spark and Hive
 
 **Are there any benefits to querying a hive table from Spark as opposed to querying using HiveQL?**
 
-## References
+## Essential Reading
 
-### Essential Reading
-
-#### Hive
+### Hive
 
 * [Hive Essentials](https://learning.oreilly.com/library/view/apache-hive-essentials/9781788995092/) gives a quick overview of Hive and its features
 * [A quick Hive tutorial](https://www.guru99.com/introduction-hive.html)
 
-#### Spark and Hive
+### Spark and Hive
 
 * [Ch 5. Spark SQL and DataFrames: Interacting with External Data Sources](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch05.html)  from book [Learning Spark - 2nd Edition](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
 
-### Extra Reading
+## Extra Reading
 
-#### Hive
+### Hive
 
 * [Hive project page](https://hive.apache.org/) has upto date information on Hive's new features
 

@@ -24,17 +24,15 @@ In this module you will learn about using Spark SQL
 
 **What is the scope of created table views?**
 
-## References
+## Essential Reading
 
-### Essential Reading
-
-#### Spark SQL
+### Spark SQL
 
 * [Ch 4 - Spark SQL and DataFrames: Introduction to Built-in Data Sources](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch04.html)  from book [Learning Spark - 2nd Edition](https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/)
 
-### Extra Reading
+## Extra Reading
 
-#### Adaptive Query Execution (AQE)
+### Adaptive Query Execution (AQE)
 
 This is a new SQL engine introduced in Spark v3
 

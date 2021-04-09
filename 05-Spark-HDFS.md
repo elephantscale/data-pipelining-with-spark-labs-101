@@ -23,24 +23,21 @@ HDFS is a highly popular distributed file system.  In this section we will look 
 
 **How can we mere small files into large files?**
 
-## References
+## Essential Reading
 
-### Essential Reading
-
-#### Hadoop and HDFS
+### Hadoop and HDFS
 
 * [Chapter 1. Meet Hadoop](https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/ch01.html)  of the book [Hadoop: The Definitive Guide, 4th Edition](https://learning.oreilly.com/library/view/hadoop-the-definitive) by Tom White - Gives a nice background and history on Hadoop
 * [Chapter 3. The Hadoop Distributed Filesystem](https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/ch03.html)  of the book [Hadoop: The Definitive Guide, 4th Edition](https://learning.oreilly.com/library/view/hadoop-the-definitive) by Tom White - A good introduction to HDFS design and architecture
 
-#### Small File Problem
+### Small File Problem
 
 * [Small file problem](https://medium.com/arabamlabs/small-files-in-hadoop-88708e2f6a46)
 * [Small Files](https://blog.cloudera.com/small-files-big-foils-addressing-the-associated-metadata-and-application-challenges/)  - discusses file sizes and its impact on processing
 * [Dealing with small file problem in Hadoop](https://www.quora.com/What-is-the-small-file-problem-in-Hadoop)
 * [Spark and blocksize](https://www.quora.com/Why-is-it-recommended-to-use-256-MB-block-size-on-Spark-projects-Does-it-matter-if-you-use-smaller-or-larger-block-size-if-your-spark-jobs-computationally-intensive)
 
-
-#### Spark and HDFS
+### Spark and HDFS
 
 HDFS chops files into partitions and these partitions are distributed across the cluster
 
