@@ -12,10 +12,19 @@ echo "$me : packaging $curr_dir_name ($(pwd))..."
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 
+# copy every thing to output dir
+
+OUTPUT_DIR1="output"
+OUTPUT_DIR2="effective-spark-lesson"
+OUTPUT_DIR3="${OUTPUT_DIR1}/${OUTPUT_DIR2}"
+rm -rf $OUTPUT_DIR1; mkdir -p $OUTPUT_DIR3
+
+rsync -a  --exclude OUTPUT_DIR1  --exclude '*.out' --exclude '.*' --exclude '__pycache__' --exclude '*.zip'  .  $OUTPUT_DIR3/
+
 ## convert ipynb notebooks into HTML
 #echo "=============== converting ipynb files --> html=============== "
 echo "    $me : converting ipynb files --> html"
-input_files=$(find . -type f -name "*.ipynb" | grep -v ".ipynb_checkpoints" )
+input_files=$(find $OUTPUT_DIR3 -type f -name "*.ipynb" | grep -v ".ipynb_checkpoints" )
 for input_file in $input_files
 do
     output_file="${input_file%\.*}.html"
@@ -32,7 +41,7 @@ done
 ## convert md files to html
 #echo "=============== converting md files --> html=============== "
 echo "    $me : converting md files --> html"
-input_files=$(find . -type f -name "*.md" | grep -v ".ipynb_checkpoints" )
+input_files=$(find $OUTPUT_DIR3 -type f -name "*.md" | grep -v ".ipynb_checkpoints" )
 for input_file in $input_files
 do
     output_file="${input_file%\.*}.html"
@@ -48,34 +57,19 @@ do
     fi
 done
 
-## cleanup orphan html files
-#echo "=============== removing orphan htmls =================="
-echo "    $me : removing orphan htmls"
-html_files=$(find . -type f -name "*.html" | grep -v ".ipynb_checkpoints" )
-for html_file in $html_files
-do
-    src_file1="${html_file%\.*}.md"
-    src_file2="${html_file%\.*}.ipynb"
 
-    #echo $src_file1
-    #echo $src_file2
-
-    if [ -f "$src_file1" ] || [ -f "$src_file2" ] ; then
-         :
-    else
-        #echo "removing orphan html : $html_file"
-        rm -f "$html_file"
-    fi
-done
-
+## remove MD files from output
+find $OUTPUT_DIR3 -type f -name '*.md' -print0 | xargs -0 rm
 
 
 # create a zipfile
 #echo "=============== creating  the zip file bundle  =================="
 echo "    $me : creating  the zip file bundle"
-curr_dir_name=$(basename `pwd`)
+#curr_dir_name=$(basename `pwd`)
 rm -f *.zip
-cd .. && rm -rf *.zip &&  zip -q -x '*target/*'  -x '*.DS_Store*'  -x "*.log" -x "*out/*" -x '*.git*'  -x '*zip*'  -x '*metastore_db*' -x '*out' -x '*.ipynb_checkpoints*' -x '*not-using*' -r "${curr_dir_name}.zip"  "$curr_dir_name"    && mv "${curr_dir_name}.zip"   "${curr_dir_name}" &&  cd -
+#cd .. && rm -rf *.zip &&  zip -q -x '*target/*'  -x '*.DS_Store*'  -x "*.log" -x "*out/*" -x '*.git*'  -x '*zip*'  -x '*metastore_db*' -x '*out' -x '*.ipynb_checkpoints*' -x '*not-using*' -r "${curr_dir_name}.zip"  "$curr_dir_name"    && mv "${curr_dir_name}.zip"   "${curr_dir_name}" &&  cd -
+
+cd $OUTPUT_DIR1; zip -qr "${OUTPUT_DIR2}.zip"  $OUTPUT_DIR2
 
 
 IFS=$SAVEIFS
