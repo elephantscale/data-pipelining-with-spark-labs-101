@@ -80,7 +80,7 @@ You may also read [Chapter 2. Downloading Apache Spark and Getting Started](http
 
 A typical Spark development goes like this:
 
-<img src="assets/images/workflow.png" style="width:90%;">
+<img src="../assets/images/workflow.png" style="width:90%;">
 
 Next logical step going from a laptop is to run your code on the dev/staging cluster.
 
