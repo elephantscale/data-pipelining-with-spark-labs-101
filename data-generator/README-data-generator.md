@@ -32,12 +32,32 @@ This is **small** data (few 100 rows)
 |             4 |              10 |
 |             5 |              14 |
 
-## Lab-1: Generate Sample Data
+## Data Locations
+
+We have the data files already generated for you.  Check here.
+
+* Transaction data : TODO
+* Rewards data : TODO
+
+You can also generate data by following the instructions below.
+
+## Lab-1: Generate Rewards Data
+
+This is fairly small data (few hundred rows).  
+
+```bash
+    $   python  datagen-merchant-rewards.py
+```
+
+This will save data in file `reward-points.csv`
+
+## Lab-2: Generate Sample Transaction Data
 
 We will use a Python script to generate some sample data.
 
 - Run this notebook in : **`data-generator/datagen-tx-small-1.ipynb`**  ([html version](datagen-tx-small-1.html))
 - Or python script **`datagen-tx-small-1.py`**
+- The helper functions are in  **`data-generator/datagen_helper.py`**
 
 ```bash
 $   python   datagen-tx-small-1.py
@@ -47,4 +67,39 @@ Also generate rewards data
 
 ```bash
 $   python datagen-merchant-rewards.py
+```
+
+## Lab 3: Generate Large Amount of Transacation Data Using Spark
+
+In this lab, we will use built in Spark dataframe API to generate large amount of data.
+
+This script is written in Scala : **`datagen-tx-large.scala`**
+
+Inspect the configuration settings in the above file:
+
+* `val numRows = aMillion * 1`  : default is one million rows
+* `val numPartitions = 10`  : generate data in 10 partitions
+* `val save_location = "datagen.tx"` : where to save data (default : local)
+* `val save_format = "csv"` : save format (default csv)
+
+First test on local mode:
+
+```bash
+    $   spark-shell --driver-memory 4g  --executor-memory 4g  -i datagen-tx-large.scala
+```
+
+To run on Hadoop cluster,
+
+```bash
+    $   spark-shell --driver-memory 4g  --executor-memory 4g  --master yarn -i datagen-tx-large.scala
+```
+
+## Lab-4: Reading back generated data to verify
+
+* Inspect the file **`load-data.py`**
+* Around line-10, make any changes needed
+* Run the script as follows
+
+```bash
+    $   $SPARK_HOME/bin/spark-submit  --master local[*] --driver-class-path ../logging/  load-data.py
 ```

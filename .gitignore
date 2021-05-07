@@ -6,6 +6,9 @@ logs
 output
 *.html
 *.pdf
+data-generator/data/
+.vscode
+*.csv
 
 
 ## Python
