@@ -6,9 +6,11 @@ logs
 output
 *.html
 *.pdf
-data-generator/data/
+data/transactions/csv/*
+data/transactions/parquet/*
 .vscode
 *.csv
+.*
 
 
 ## Python

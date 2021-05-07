@@ -6,7 +6,7 @@
 
 - [01 - Spark Basics](basics/README-Spark-Basics.md)
 - [02 - DataFrames](dataframes/README-Spark-DataFrames.md)
-- [03 - Data Generation](data-generator/README.md)
+- [03 - Data Generation](data-generator/README-data-generator.md)
 - [04 - Spark SQL](spark-sql/README-Spark-SQL.md)
 - [05 - Spark and Hive](hive/README-Spark-Hive.md)
 

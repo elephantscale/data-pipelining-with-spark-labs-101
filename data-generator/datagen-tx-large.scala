@@ -28,11 +28,11 @@ val numPartitions = 10
 // optionally, save
 // location can be local dir, or HDFS dir
 // val save_location = ""   // empty for no save
-val save_location = "data/transactions"
+val save_location = "../data/transactions"
 // val save_location = "hdfs://user/me/data.tx"
 
-// val save_format = "csv"
-val save_format = "parquet"
+val save_format = "csv"
+// val save_format = "parquet"
 // ---- Configuration end ----
 
 /*
@@ -276,7 +276,7 @@ println("### Created data frame in %,.2f ms".format((t3 - t1) / 1e6))
 df.show(20, truncate=false)
 
 if (!save_location.isEmpty) {
-    val save_location2 = save_location + "." + save_format
+    val save_location2 = save_location + "/" + save_format
     t1 = System.nanoTime()
     if (save_format == "parquet")
         df.write.mode("overwrite").parquet(save_location2)
