@@ -15,4 +15,4 @@ pd.set_option('display.width', 1000)
 print (df_pd)
 
 df_pd.to_csv('transactions-small.csv', sep='|', index=False)
-print (f'wrote {rows} rows to "transactions-small.csv"')
+print (f'wrote {rows} rows to "transactions-sample.csv"')

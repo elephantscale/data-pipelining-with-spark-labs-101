@@ -174,15 +174,24 @@ final class RandomPartition[A: ClassTag](val index: Int, numValues: Int) extends
   def generate_merchant_address: String = {
     "%s, %s".format (generate_merchant_name , generate_address)
   }
+    
+  def generate_merchant_id: String = {
+      val a = scala.util.Random.nextInt(150)
+      if (a <= 100)
+          return a.toString;
+      else
+          return 0.toString;
+  }
 
   //Generate tuples based on below formulae
-  def generateTuples: ((String, String, String, String, String, String, String, String, String, String), (String, String, String, String, String, String, String, String, String, String)) = {
+  def generateTuples: ((String, String, String, String, String, String, String, String, String, String, String), (String, String, String, String, String, String, String, String, String, String, String)) = {
 
     val id = randomUUID().toString
     val merchant_type = "%04d".format(scala.util.Random.nextInt(9999) + 1)
     val amount_customer = (scala.util.Random.nextInt(10000) + 100.0) / 10
     val amount_merchant = amount_customer * .97
     val cc_num = generate_cc
+    val merchant_id = generate_merchant_id
 
     //We need to get the random number here... probaly we can do something here
     //since there is no random for long, we would do for days and the and int which would for a day
@@ -207,22 +216,24 @@ final class RandomPartition[A: ClassTag](val index: Int, numValues: Int) extends
     val response_code = generate_response_code
 
     //Generate a random 2 decimal float here
-    val req = Tuple10 (id,
+    val req = Tuple11 (id,
                       op_date_format.format(cal_req.getTime), 
                       "0100", 
                       cc_num, 
                       "%.2f".format(amount_customer), 
                       merchant_type, 
+                      merchant_id,
                       merchant_add, 
                       "",
                       "", 
                       "")
-    val res = Tuple10(randomUUID().toString,
+    val res = Tuple11(randomUUID().toString,
                      op_date_format.format(cal_res.getTime), 
                      "0110", 
                      cc_num, 
                      "%.2f".format(amount_customer), 
                      merchant_type, 
+                     merchant_id,
                      merchant_add, 
                      id,
                      "%.2f".format(amount_merchant), 
@@ -258,13 +269,13 @@ final class RandomRDD[A: ClassTag](@transient private val sc: SparkContext, numS
 
 var t1 = System.nanoTime()
 // supplying numRows / 2, because each iteration generates 2 rows : request and response
-val rdd1 = new RandomRDD[((String,String, String, String, String, String, String, String, String, String), (String,String,String, String, String, String, String, String, String, String))](spark.sparkContext, numPartitions, numRows/2)
+val rdd1 = new RandomRDD[((String,String, String, String, String, String, String, String, String, String, String), (String, String,String,String, String, String, String, String, String, String, String))](spark.sparkContext, numPartitions, numRows/2)
 var t2 = System.nanoTime()
 
 import spark.implicits._
 val df = rdd1.toDF().withColumn("id", monotonically_increasing_id + 123).selectExpr("id", "stack(2,`_1`,`_2`)")
   .withColumnRenamed("col0", "data") // default name of this column is col0
-  .drop("id").selectExpr("data._1 as id", "data._2 as timestamp", "data._3 as mti", "data._4 as card_number", "data._5 as amount_customer", "data._6 as merchant_type", "data._7 as merchant_address","data._8 as ref_id", "data._9 as amount_merchant", "data._10 as response_code")
+  .drop("id").selectExpr("data._1 as id", "data._2 as timestamp", "data._3 as mti", "data._4 as card_number", "data._5 as amount_customer", "data._6 as merchant_type", "data._7 as merchant_id", "data._8 as merchant_address","data._9 as ref_id", "data._10 as amount_merchant", "data._11 as response_code")
 var t3 = System.nanoTime()
 println("### Created data frame in %,.2f ms".format((t3 - t1) / 1e6))
 
@@ -281,7 +292,7 @@ if (!save_location.isEmpty) {
     if (save_format == "parquet")
         df.write.mode("overwrite").parquet(save_location2)
     else
-        df.write.mode("overwrite").option("header",true).csv(save_location2)
+        df.write.mode("overwrite").option("header",true).option("sep", "|").csv(save_location2)
     t2 = System.nanoTime()
     println("### Saved  to '%s' in %,.2f ms".format(save_location2, (t2 - t1) / 1e6))
 }
