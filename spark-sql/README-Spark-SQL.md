@@ -42,14 +42,22 @@ This is a new SQL engine introduced in Spark v3
 
 ## Labs
 
-### Lab-1 : Loading flights data and querying via SQL
+### Lab-1 : Spark SQL with small data
 
-- In this lab, we will load flights data and query with SQL
-- Follow this notebook (TODO)
+* We will start with small dataset.
+* Follow this notebook [sql-1-query-small-data.ipynb](sql-1-query-small-data.ipynb)  ( [html version](sql-1-query-small-data.html))
 
 ### Lab-2: Load VISA data and query
 
-- Follow this notebook (TODO)
+* In this lab, we will try SQL queries with large amount of data
+* You can use pre-generated data or the data you generated in previous lab
+* Lab file : [sql-2-query-large-data.py](sql-2-query-large-data.py)
+
+A few things to experiment:
+
+* Load data in both CSV and parquet format.  And measure the query speed.  Do you see a noticeable difference?
+* Enable 'adaptive query optimizer (AQE)' and run your queries.  Do you see any noticeable difference?
+* Use `explain` command to see what optimizations are applied to Spark SQL queries.
 
 ## Review and Key Takeaways
 
