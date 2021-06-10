@@ -292,7 +292,7 @@ if (!save_location.isEmpty) {
     if (save_format == "parquet")
         df.write.mode("overwrite").parquet(save_location2)
     else
-        df.write.mode("overwrite").option("header",true).option("sep", "|").csv(save_location2)
+        df.write.mode("overwrite").option("header",true).option("sep", ",").csv(save_location2)
     t2 = System.nanoTime()
     println("### Saved  to '%s' in %,.2f ms".format(save_location2, (t2 - t1) / 1e6))
 }

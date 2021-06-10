@@ -8,7 +8,7 @@ spark = SparkSession.builder.appName("data-gen-test").getOrCreate()
 print('### Spark UI available on port : ' + spark.sparkContext.uiWebUrl.split(':')[2])
 
 ## Load the generated files and test
-df = spark.read.csv('../data/transactions/csv/', header=True,  sep="|", inferSchema=False)
+df = spark.read.csv('../data/transactions/csv/', header=True,  sep=",", inferSchema=False)
 t1 = time.perf_counter()
 count = df.count()
 t2 = time.perf_counter()
