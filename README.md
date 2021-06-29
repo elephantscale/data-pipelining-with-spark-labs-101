@@ -1,20 +1,20 @@
 <link rel='stylesheet' href='assets/css/main.css'/>
 
-# Effective Spark
+# Labs for Data Pipelining with Spark
 
-## Basics
+## Data Pipelining 101
 
-- [01 - Spark Basics](basics/README-Spark-Basics.md)
-- [02 - DataFrames](dataframes/README-Spark-DataFrames.md)
-- [03 - Data Generation](data-generator/README-data-generator.md)
-- [04 - Spark SQL](spark-sql/README-Spark-SQL.md)
-- [05 - Spark and Hive](hive/README-Spark-Hive.md)
+- [01 - Spark Basics](01-basics/README-Spark-Basics.md)
+- [02 - Dataframes](02-dataframes/README-DataFrames.md)
+- [03 - Data Generator](03-data-generator/README-data-generator.md)
+- [04 - Spark SQL](04-spark-sql/README-Spark-SQL.md)
+- [05 - Spark and HDFS](05-hdfs/README-Spark-HDFS.md)
+- [06 - Spark Hive](06-hive/README-Spark-Hive.md)
+- [07 - Spark and YARN](07-yarn/README-Spark-YARN.md)
 
-## Intermediate
+## Data Pipelining 201
 
-- [06 - Spark and HDFS](hdfs/README-Spark-HDFS.md)
-- [07 - Spark and YARN](yarn/README-Spark-YARN.md)
-- [08 - Spark caching](caching/README-Spark-Caching.md)
-- [09 - Spark joins](joins/README-Spark-Joins.md)
-- [10 - Effective data formats](data-formats/README-Effective-Data-Formats.md)
-- [11 - Spark streaming with Kafka](kafka/README-Spark-Kafka.md)
+- [08 - Spark caching](08-caching/README-Spark-Caching.md)
+- [09 - Spark joins](09-joins/README-Spark-Joins.md)
+- [10 - Effective data formats](10-data-formats/README-Effective-Data-Formats.md)
+- [11 - Spark streaming with Kafka](11-kafka/README-Spark-Kafka.md)

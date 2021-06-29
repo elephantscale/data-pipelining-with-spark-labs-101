@@ -33,19 +33,19 @@ YARN is the cluster manager for Hadoop.  In order to run Spark jobs on a Hadoop 
 
 #### Spark and YARN interaction
 
-<img src="assets/images/spark-architecture-1.png" style="width:90%;">
+<img src="../assets/images/spark-architecture-1.png" style="width:90%;">
 
 #### YARN Client mode
 
 Used for interactive development and debugging
 
-<img src="assets/images/spark-yarn-1.png" style="width:90%;">
+<img src="../assets/images/spark-yarn-1.png" style="width:90%;">
 
 #### YARN cluster mode
 
 Non interactive runs (production).  Note the difference where 'driver' is running.
 
-<img src="assets/images/spark-yarn-2.png" style="width:90%;">
+<img src="../assets/images/spark-yarn-2.png" style="width:90%;">
 
 #### References
 

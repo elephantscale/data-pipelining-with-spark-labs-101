@@ -1,6 +1,6 @@
 <link rel='stylesheet' href='../assets/css/main.css'/>
 
-# Setting up Spark Locally
+# Lab 1-1: Setting up Spark Locally
 
 ## Operating System
 
