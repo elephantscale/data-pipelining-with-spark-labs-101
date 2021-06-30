@@ -2,11 +2,11 @@
 
 # Spark and HDFS Labs
 
-## Lab-1: Accessing HDFS files from Spark
+## Lab-5.1: Accessing HDFS files from Spark
 
 This is a quick lab we will access data on HDFS from Spark
 
-Lab instructions (TODO)
+[Lab instructions](5.1__accesssing-hdfs-files.md)
 
 ## Lab-2: Generating data
 
