@@ -28,8 +28,8 @@ val numPartitions = 10
 // optionally, save
 // location can be local dir, or HDFS dir
 // val save_location = ""   // empty for no save
-val save_location = "../data/transactions"
-// val save_location = "hdfs://user/me/data.tx"
+val save_location = "../data/transactions/"
+// val save_location = "hdfs://user/me/transactions/large"
 
 val save_format = "csv"
 // val save_format = "parquet"

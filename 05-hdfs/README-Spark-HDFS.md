@@ -6,14 +6,16 @@
 
 This is a quick lab we will access data on HDFS from Spark
 
-[Lab instructions](5.1__accesssing-hdfs-files.md)
+[Lab instructions](5-1_accesssing-hdfs-files.md)
 
-## Lab-2: Generating data
+## Lab-5.2: Generating data
 
 * In this lab, you will use a **data generator script** to create some sample data.
 * We can configure partition size for the generated data
 * We will generate various partition sizes (small to large)
-* Lab instructions (TODO)
+
+[Lab instructions](5-2_generate-data.md)
+
 
 ## Lab-3: Partition size vs processing times
 

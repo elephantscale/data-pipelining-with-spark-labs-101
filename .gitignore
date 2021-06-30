@@ -9,7 +9,7 @@ output
 data/transactions/csv/*
 data/transactions/parquet/*
 .vscode
-*.csv
+csv
 .*
 
 
