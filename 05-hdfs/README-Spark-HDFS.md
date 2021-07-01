@@ -25,4 +25,5 @@ This is a quick lab we will access data on HDFS from Spark
 ## Lab-5.4: Merging small files into large files
 
 * In this lab, we will explore how to detect small files and merge them into large files
-* Lab instructions (TODO)
+
+[Lab instructions](5-4_merging-small-files.md)
