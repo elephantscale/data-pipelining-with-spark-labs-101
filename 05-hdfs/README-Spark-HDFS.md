@@ -16,20 +16,13 @@ This is a quick lab we will access data on HDFS from Spark
 
 [Lab instructions](5-2_generate-data.md)
 
-
-## Lab-3: Partition size vs processing times
+## Lab-5.3: Partition size vs processing times
 
 * In this lab, we will run Spark jobs on data of various partition sizes and compare the results
-* Lab instructions (TODO)
 
-## Lab-4: Merging small files into large files
+[Lab instructions](5-3_partition-size-and-processing.md)
+
+## Lab-5.4: Merging small files into large files
 
 * In this lab, we will explore how to detect small files and merge them into large files
 * Lab instructions (TODO)
-
-## Review and Key Takeaways
-
-After completing this chapter
-
-* You should be able to answer the 'Knowledge Check' questions comfortably (see start of the document)
-* Deal with small files and work with them effectively using Spark

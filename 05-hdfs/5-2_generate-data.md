@@ -35,13 +35,40 @@ val save_location = "/user/me/transactions/a"
 
 ## Step-2: Run the Data Generator
 
+### To run in local mode
+
+Edit the data-generator script
+
+```scala
+val numRows = aMillion * 100
+val numPartitions = 10
+val save_location = "data/transactions/a/"
+```
+
+Arguments explained:
+
+- Allocating 4 GB memory for Spark driver and Spark executor
+- Running in local mode (`--master local[*]`)
+
+```bash
+# make sure you are in the labs root dir
+$   cd /labs/top-level/dir
+
+$   spark-shell   --driver-memory 4g \
+          --executor-memory 4g   --master local[*] \
+          -i 03-data-generator/datagen-tx-large.scala
+
+```
+
+### To Run on cluster
+
 Arguments explained:
 - Allocating 4 GB memory for Spark driver and Spark executor
 - Connecting to YARN cluster (`--master yarn`)
 
 ```bash
 # make sure you are in the labs root dir
-$   cd /where/ever/your/labs/are
+$   cd /labs/top-level/dir
 
 $   spark-shell   --driver-memory 4g \
           --executor-memory 4g   --master yarn \
