@@ -67,7 +67,7 @@ And load the file as follows in Spark shell.  To access HDFS files, we may need 
     - You will need to adjust the URL according to your cluster settings
 
 ```python
-df = spark.read.csv('/user/mrmeow/transactions/sample/')
+df = spark.read.csv('/user/mrmeow/transactions/sample/', header=True)
 df.count()
 df.show()
 ```

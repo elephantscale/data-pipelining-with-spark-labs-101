@@ -28,7 +28,7 @@ $   pyspark
 
 # load small partition data
 
-df1 = spark.read.csv('/user/me/transactions/a/csv')
+df1 = spark.read.csv('/user/me/transactions/a/csv', header=True)
 
 # See how many partitions we have
 df1.rdd.getNumPartitions()

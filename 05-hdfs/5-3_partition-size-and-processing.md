@@ -42,13 +42,13 @@ Issue this on Spark-Shell
 
 ## First read smaller partition size (about 35 MB each)
 # Adjust the path accordingly
-df1 = spark.read.csv('data/transactions/a/csv')
+df1 = spark.read.csv('data/transactions/a/csv', header=True)
 df1.count()
 
 
 ## Then read larger partition size (about 174 MB each)
 # Adjust the path accordingly
-df2 = spark.read.csv('data/transactions/b/csv')
+df2 = spark.read.csv('data/transactions/b/csv', header=True)
 df2.count()
 ```
 
@@ -76,13 +76,13 @@ Run the same code again
 
 ## First read smaller partition size (about 35 MB each)
 # Adjust the path accordingly
-df1 = spark.read.csv('/user/me/data/transactions/a/csv')
+df1 = spark.read.csv('/user/me/data/transactions/a/csv', header=True)
 df1.count()
 
 
 ## Then read larger partition size (about 174 MB each)
 # Adjust the path accordingly
-df2 = spark.read.csv('/user/me/data/transactions/b/csv')
+df2 = spark.read.csv('/user/me/data/transactions/b/csv', header=True)
 df2.count()
 ```
 
