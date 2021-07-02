@@ -79,13 +79,13 @@ Inspect the configuration settings in the above file:
 
 * `val numRows = aMillion * 1`  : default is one million rows
 * `val numPartitions = 10`  : generate data in 10 partitions
-* `val save_location = "datagen.tx"` : where to save data (default : local)
+* `val save_location = "data/transactions/1"` : where to save data (default : local)
 * `val save_format = "csv"` : save format (default csv)
 
 First test on local mode:
 
 ```bash
-    $   spark-shell --driver-memory 4g  --executor-memory 4g  -i datagen-tx-large.scala
+    $   spark-shell --master local[*] --driver-memory 4g  --executor-memory 4g  -i datagen-tx-large.scala
 ```
 
 To run on Hadoop cluster,

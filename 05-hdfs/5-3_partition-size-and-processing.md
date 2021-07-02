@@ -91,3 +91,16 @@ df2.count()
 - How much time did loading the data take?  Was it different for both datasets?
 - measure the processing times for the count.  Do you see any noticeable difference?
 - How many tasks were used for count on both instances?
+
+## Takeaways
+
+So what is the **right** partition size?  Unfortunately there is no formula for it.  
+
+The optimal partition size depends on the following:
+
+- The kind of data you are processing
+- And the processing you are doing
+
+We recommend you experiment a little bit various partition sizes and see what works for you.
+
+A good starting point is the **default block size** of HDFS.
