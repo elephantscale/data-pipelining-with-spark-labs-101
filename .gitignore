@@ -9,9 +9,13 @@ output
 data/transactions/csv/*
 data/transactions/parquet/*
 .vscode
-csv
+*.csv
 .*
 *.data
+_SUCCESS
+*.orc
+*.parquet
+*.json
 
 
 ## Python
