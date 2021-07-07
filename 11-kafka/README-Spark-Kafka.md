@@ -2,11 +2,16 @@
 
 # Spark and Kafka Labs
 
-## Lab-1: Setting up environment for Kafka and Spark
+## Lab 11.1: Setting up Kafka
 
-- Instructions (TODO)
+[Lab 11.1 instructions](11-1_kafka-setup.md)
 
-## Lab-2: Structured streaming + Kafka
+## Lab 11.2: Kafka Quick Start
 
-- In this lab we will write a structured streaming program to work with Kafka
-- Instructions (TODO)
+[Lab 11.2 instructions](11-2_kafka-quick-start.md)
+
+## Lab 11.3: Spark Structured streaming + Kafka
+
+In this lab we will write a structured streaming program to work with Kafka
+
+[Lab 11.3 instructions](11-3_spark-kafka.md)
