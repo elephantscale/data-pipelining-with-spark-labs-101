@@ -41,7 +41,7 @@ data sizes:
     CSV : 1 million rows = 172 MB
     Parquet : 1 million rows = 95 MB
 
-    CSV : 1 million rows =  1.7 GB
+    CSV : 10 million rows =  1.7 GB
     Parquet : 10 million rows = 886 MB
 */
 
