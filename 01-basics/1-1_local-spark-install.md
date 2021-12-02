@@ -5,7 +5,7 @@
 ## Operating System
 
 Setup is easier if you have either **MacOS or Linux**.  
-If you are on Windows, download the [docker image](https://hub.docker.com/repository/docker/elephantscale/es-training) and do the setup in the sandbox.
+If you are on Windows, download the [docker image](https://hub.docker.com/r/elephantscale/es-training) and do the setup in the sandbox.
 
 ## Software Needed
 
