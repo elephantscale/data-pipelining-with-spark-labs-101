@@ -28,6 +28,46 @@ Verify you have the correct version by doing
 
 Download and install Anaconda Python version 3.x from [here](https://www.anaconda.com/download/).
 
+## Create a seperate environment for Spark libraries
+
+It is a good practice to have seperate environments for different developmnet needs.  This way, we can have clean dev environments and minimize version conflicits.
+
+Here is how to create one using Anaconda
+
+```bash
+# list all environments
+$   conda env list
+
+# create a new env for Spark with python 3.8
+# this will create the env called 'pyspark'
+$   conda create --name pyspark  python=3.8
+
+# activate the new env
+$   conda activate pyspark
+
+# you will most likely see the terminal prompt change to 'pyspark' indicating that you are in the right dev environment
+```
+
+**Note**: Run all the following commands within 'pyspark' environment you just created.
+
+Here are some handy commands to deal with conda environments:
+
+```bash
+# list all environments
+# The currently active env will have a * next to it
+$   conda env list
+
+# activate an env
+$   conda activate pyspark
+
+# deactivate
+$   conda decativate
+
+# to see all installed packages
+$   conda list
+```
+
+
 ## Install following add-on packages
 
 Open a **new** terminal and run the following command
