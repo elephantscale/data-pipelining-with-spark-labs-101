@@ -45,6 +45,15 @@ You can also generate data by following the instructions below.
 
 This is fairly small data (few hundred rows).  
 
+Activate python env and install dependencies.
+
+```bash
+    $   conda activate pyspark
+    $   conda install tabulate
+```
+
+Now generate rewards data:
+
 ```bash
     $   python  datagen-merchant-rewards.py
 ```
@@ -63,11 +72,15 @@ We will use a Python script to generate some sample data.
 $   python   datagen-tx-small-1.py
 ```
 
-Also generate rewards data
+This will generate a small sample of data.
+
+To generate a 10,000 rows, try this script:
 
 ```bash
-$   python datagen-merchant-rewards.py
+$   python datagen-tx-medium.py
 ```
+
+You can edit the above script and update `rows = ` to a desired number.
 
 ## Lab 3: Generate Large Amount of Transacation Data Using Spark
 
@@ -85,7 +98,7 @@ Inspect the configuration settings in the above file:
 First test on local mode:
 
 ```bash
-    $   spark-shell --master local[*] --driver-memory 4g  --executor-memory 4g  -i datagen-tx-large.scala
+    $   spark-shell --master 'local[*]' --driver-memory 4g  --executor-memory 4g  -i datagen-tx-large.scala
 ```
 
 To run on Hadoop cluster,
@@ -101,5 +114,5 @@ To run on Hadoop cluster,
 * Run the script as follows
 
 ```bash
-    $   $SPARK_HOME/bin/spark-submit  --master local[*] --driver-class-path ../logging/  load-data.py
+    $   $SPARK_HOME/bin/spark-submit  --master 'local[*]' --driver-class-path ../logging/  load-data.py
 ```

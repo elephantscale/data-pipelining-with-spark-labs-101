@@ -3,7 +3,7 @@
 import pandas as pd
 from datagen_helper import generate_pd_df
 
-rows = 1000000
+rows = 10000
 df_pd = generate_pd_df(rows)
 
 
