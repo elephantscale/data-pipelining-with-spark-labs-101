@@ -98,14 +98,47 @@ Inspect the configuration settings in the above file:
 First test on local mode:
 
 ```bash
-    $   spark-shell --master 'local[*]' --driver-memory 4g  --executor-memory 4g  -i datagen-tx-large.scala
+    $   spark-shell --master 'local[*]' \
+                    --driver-memory 4g  --executor-memory 4g \
+                    -i datagen-tx-large.scala
 ```
 
 To run on Hadoop cluster,
 
 ```bash
-    $   spark-shell --driver-memory 4g  --executor-memory 4g  --master yarn -i datagen-tx-large.scala
+    $   spark-shell --master yarn \
+                    --driver-memory 4g  --executor-memory 4g \
+                    -i datagen-tx-large.scala
 ```
+
+**ACTION: Generate transactino data in CSV format**:  
+
+- By default, the script will generate CSV data in `../data/transactions/csv`  directory.
+- Inspect the directory as follows:
+
+```bash
+$   ls -lh  ../data/transactions/csv
+
+# see data size
+$   du -skh  ../data/transactions/csv
+```
+
+**ACTION: Generate transaction data in parquet format**
+
+- Edit file `datagen-tx-large.scala` file and change `val save_format = "parquet"`
+- The parquet data will be generated in `../data/transactions/parquet` folder
+- Run the data gen script as outline above
+- Inspect the directory as follows:
+
+```bash
+$   ls -lh  ../data/transactions/parquet
+
+# see data size
+$   du -skh  ../data/transactions/parquet
+```
+
+**ACTION: Notice the size difference between csv and parquet**
+
 
 ## Lab-4: Reading back generated data to verify
 
@@ -114,5 +147,7 @@ To run on Hadoop cluster,
 * Run the script as follows
 
 ```bash
-    $   $SPARK_HOME/bin/spark-submit  --master 'local[*]' --driver-class-path ../logging/  load-data.py
+    $   spark-submit  --master 'local[*]' \
+                      --driver-class-path ../logging/  \
+                      load-data.py
 ```

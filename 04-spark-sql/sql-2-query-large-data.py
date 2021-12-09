@@ -1,11 +1,16 @@
 ## Run it as 
-##  $SPARK_HOME/bin/spark-submit  --master local[*] --driver-class-path ../logging/  sql-2-query-large-data.py
+##  $SPARK_HOME/bin/spark-submit  --master 'local[*]' --driver-class-path ../logging/  sql-2-query-large-data.py
+## 
+## To prevent out-of-memory errors, provide more memory...
+##      $SPARK_HOME/bin/spark-submit  --master 'local[*]' --driver-class-path ../logging/  --driver-memory 2G --executor-memory 4G sql-2-query-large-data.py
+##
 
 from pyspark.sql import SparkSession
 from pyspark.sql.types import ArrayType, IntegerType, LongType, StringType, FloatType, TimestampType, StructType, StructField
 import time
 
 spark = SparkSession.builder.appName("sql-2").getOrCreate()
+spark.sparkContext.setLogLevel("ERROR")
 print('### Spark UI available on port : ' + spark.sparkContext.uiWebUrl.split(':')[2])
 
 ## two options to load:

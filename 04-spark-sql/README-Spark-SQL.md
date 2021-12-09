@@ -13,6 +13,20 @@
 * You can use pre-generated data or the data you generated in previous lab
 * Lab file : [sql-2-query-large-data.py](sql-2-query-large-data.py)
 
+Here is how to run it:
+
+```bash
+$   spark-submit --master 'local[*]' \
+                 --driver-class-path ../logging/ \
+                 sql-2-query-large-data.py
+
+# to supply more memory
+$   spark-submit --master 'local[*]' \
+                 --driver-class-path ../logging/ \
+                 --driver-memory 4g  --executor-memory 4g \
+                 sql-2-query-large-data.py
+```
+
 A few things to experiment:
 
 * Load data in both CSV and parquet format.  And measure the query speed.  Do you see a noticeable difference?
