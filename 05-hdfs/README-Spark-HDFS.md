@@ -2,6 +2,20 @@
 
 # Spark and HDFS Labs
 
+## Spark and HDFS
+
+HDFS chops files into partitions and these partitions are distributed across the cluster
+
+<img src="../assets/images/distributed_file_blocks.png" style="width:90%;">
+
+Spark works well with HDFS.  Spark can understand file layout and prioritize local data.
+
+<img src="../assets/images/spark_and_hdfs.png" style="width:90%;">
+
+Spark will spin up a task per partition to process data.  This way, we get parallelism
+
+<img src="../assets/images/distributed_processing.png" style="width:90%;">
+
 ## Lab-5.1: Accessing HDFS files from Spark
 
 This is a quick lab we will access data on HDFS from Spark
