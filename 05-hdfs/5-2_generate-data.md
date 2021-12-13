@@ -48,14 +48,14 @@ val save_location = "data/transactions/a/"
 Arguments explained:
 
 - Allocating 4 GB memory for Spark driver and Spark executor
-- Running in local mode (`--master local[*]`)
+- Running in local mode (`--master 'local[*]'`)
 
 ```bash
 # make sure you are in the labs root dir
 $   cd /labs/top-level/dir
 
 $   spark-shell   --driver-memory 4g \
-          --executor-memory 4g   --master local[*] \
+          --executor-memory 4g   --master 'local[*]' \
           -i 03-data-generator/datagen-tx-large.scala
 
 ```

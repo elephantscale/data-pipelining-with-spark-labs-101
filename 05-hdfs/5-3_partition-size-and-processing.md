@@ -30,7 +30,7 @@ Generate the same amount of data, say 10 million rows, into 10 partitions and 50
 Launch Spark Shell
 
 ```bash
-$   pyspark --master local[*]  --executor-memory 4g  --driver-memory 4g
+$   pyspark --master 'local[*]'  --executor-memory 4g  --driver-memory 4g
 
 ```
 
