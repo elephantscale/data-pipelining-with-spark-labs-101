@@ -29,6 +29,7 @@ my_schema = StructType([
                        StructField("response_code", StringType(), True),
                       ])
 df = spark.read.csv('../data/transactions/csv/', header=True, schema=my_schema)
+# df = spark.read.parquet('../data/transactions/parquet/', schema=my_schema)
 
 ## 2 - loading parquet 
 # df = spark.read.parquet('../data/transactions/parquet/')
