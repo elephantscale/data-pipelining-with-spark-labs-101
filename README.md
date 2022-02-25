@@ -2,6 +2,7 @@
 
 # Data Pipelining With Spark 101
 
+- [00 - Lab setup](00-setup/README.md)
 - [01 - Spark Basics](01-basics/README-Spark-Basics.md)
 - [02 - Dataframes](02-dataframes/README-DataFrames.md)
 - [03 - Data Generator](03-data-generator/README-data-generator.md)
