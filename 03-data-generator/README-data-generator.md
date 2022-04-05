@@ -111,7 +111,7 @@ To run on Hadoop cluster,
                     -i datagen-tx-large.scala
 ```
 
-**ACTION: Generate transactino data in CSV format**:  
+**ACTION: Generate transaction data in CSV format**:  
 
 - By default, the script will generate CSV data in `../data/transactions/csv`  directory.
 - Inspect the directory as follows:
