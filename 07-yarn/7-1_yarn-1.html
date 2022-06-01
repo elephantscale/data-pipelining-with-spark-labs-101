@@ -1,0 +1,43 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="spark-and-yarn">Spark and YARN</h1>
+<h2 id="overview">Overview</h2>
+<p>Running Spark jobs over YARN</p>
+<h2 id="duration">Duration</h2>
+<p>15 minutes</p>
+<h2 id="step-1-understanding-spark-and-yarn">Step-1: Understanding Spark and YARN</h2>
+<p><img src="../assets/images/spark-architecture-1.png" style="width:60%;"></p>
+<p>When Spark is configured properly on Hadoop cluster, it will automatically connect to YARN to submit jobs.</p>
+<h2 id="step-2-testing-yarn-connectivity">Step-2: Testing YARN Connectivity</h2>
+<p>Launch Spark in yarn mode</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   pyspark <span class="at">--master</span> yarn</span></code></pre></div>
+<p>Inspect the logs. You will see something along the lines like these.</p>
+<pre class="text"><code>...connected to resource manager ...</code></pre>
+<h2 id="step-3-yarn-client-mode">Step-3: YARN Client Mode</h2>
+<p>lient mode let’s you interact with YARN using Spark Shell.</p>
+<p>Used for interactive development and debugging</p>
+<p><img src="../assets/images/spark-yarn-1.png" style="width:90%;"></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   pyspark <span class="at">--master</span> yarn  <span class="at">--deploy-mode</span> client</span></code></pre></div>
+<p>Try this on Spark-shell</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10000</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df.count()</span></code></pre></div>
+<h2 id="step-4-yarn-cluster-mode">Step-4: YARN Cluster Mode</h2>
+<p>Cluster mode is non-interactive. Used for submiting jobs in production.</p>
+<p>Note the difference where ‘driver’ is running.</p>
+<p><img src="../assets/images/spark-yarn-2.png" style="width:90%;"></p>
+<p>Create a python file <code>sample.py</code> as follows</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder.</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        appName(<span class="st">&quot;mysparkapp&quot;</span>).getOrCreate()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10000</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>df.count()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>spark.stop()</span></code></pre></div>
+<p>Submit this program as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-submit <span class="at">--master</span> yarn <span class="at">--deploy-mode</span> cluster <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            sample.py</span></code></pre></div>

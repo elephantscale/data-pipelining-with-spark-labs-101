@@ -84,9 +84,9 @@ $   conda install -c conda-forge findspark
 - where Spark is unzipped is the SPARK_HOME
 
 ```bash
-$   wget  https://elephantscale-public.s3.amazonaws.com/downloads/spark-3.0.2-bin-hadoop2.7.tgz
-$   tar xvf   spark-3.0.2-bin-hadoop2.7.tgz
-$   mv  spark-3.0.2-bin-hadoop2.7    spark
+$   wget  https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+$   tar xvf spark-3.2.1-bin-hadoop3.2.tgz
+$   mv  spark-3.2.1-bin-hadoop3.2   spark
 ```
 
 ## Edit  `run-jupyter.sh`
@@ -95,8 +95,11 @@ This file is located in the labs directory.
 Edit this file to match your environment.
 
 ```bash
+# activate the environment
+$   conda activate pyspark
+
+
 # TODO : Edit the following lines   
-export PATH=$HOME/anaconda3/bin:$PATH   
 export SPARK_HOME=$HOME/apps/spark   
 jupyter lab   
 ```

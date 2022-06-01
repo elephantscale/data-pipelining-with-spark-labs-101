@@ -1,0 +1,62 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="spark-and-hdfs">Spark and HDFS</h1>
+<h2 id="objective">Objective</h2>
+<p>HDFS is a highly popular distributed file system. In this section we will look into Spark and HDFS integration</p>
+<h2 id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Understand HDFS architecture</li>
+<li>Understand partitions and distributed storage</li>
+</ul>
+<h2 id="knowledge-check">Knowledge Check</h2>
+<p><strong>What is the default partition size in HDFS?</strong></p>
+<p><strong>What are the problems caused by small files in HDFS?</strong></p>
+<p><strong>How do small files affect processing times in Spark?</strong></p>
+<p><strong>How can we detect small files in HDFS?</strong></p>
+<p><strong>How can we mere small files into large files?</strong></p>
+<h2 id="essential-reading">Essential Reading</h2>
+<h3 id="hadoop-and-hdfs">Hadoop and HDFS</h3>
+<ul>
+<li><a href="https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/ch01.html">Chapter 1. Meet Hadoop</a> of the book <a href="https://learning.oreilly.com/library/view/hadoop-the-definitive">Hadoop: The Definitive Guide, 4th Edition</a> by Tom White - Gives a nice background and history on Hadoop</li>
+<li><a href="https://learning.oreilly.com/library/view/hadoop-the-definitive/9781491901687/ch03.html">Chapter 3. The Hadoop Distributed Filesystem</a> of the book <a href="https://learning.oreilly.com/library/view/hadoop-the-definitive">Hadoop: The Definitive Guide, 4th Edition</a> by Tom White - A good introduction to HDFS design and architecture</li>
+</ul>
+<h3 id="small-file-problem">Small File Problem</h3>
+<ul>
+<li><a href="https://medium.com/arabamlabs/small-files-in-hadoop-88708e2f6a46">Small file problem</a></li>
+<li><a href="https://blog.cloudera.com/small-files-big-foils-addressing-the-associated-metadata-and-application-challenges/">Small Files</a> - discusses file sizes and its impact on processing</li>
+<li><a href="https://www.quora.com/What-is-the-small-file-problem-in-Hadoop">Dealing with small file problem in Hadoop</a></li>
+<li><a href="https://www.quora.com/Why-is-it-recommended-to-use-256-MB-block-size-on-Spark-projects-Does-it-matter-if-you-use-smaller-or-larger-block-size-if-your-spark-jobs-computationally-intensive">Spark and blocksize</a></li>
+</ul>
+<h3 id="spark-and-hdfs-1">Spark and HDFS</h3>
+<p>HDFS chops files into partitions and these partitions are distributed across the cluster</p>
+<p><img src="../assets/images/distributed_file_blocks.png" style="width:90%;"></p>
+<p>Spark works well with HDFS. Spark can understand file layout and prioritize local data.</p>
+<p><img src="../assets/images/spark_and_hdfs.png" style="width:90%;"></p>
+<p>Spark will spin up a task per partition to process data. This way, we get parallelism</p>
+<p><img src="../assets/images/distributed_processing.png" style="width:90%;"></p>
+<h2 id="labs">Labs</h2>
+<h3 id="lab-1-accessing-hdfs-files-from-spark">Lab-1: Accessing HDFS files from Spark</h3>
+<p>This is a quick lab we will access data on HDFS from Spark</p>
+<p>Lab instructions (TODO)</p>
+<h3 id="lab-2-generating-data">Lab-2: Generating data</h3>
+<ul>
+<li>In this lab, you will use a <strong>data generator script</strong> to create some sample data.</li>
+<li>We can configure partition size for the generated data</li>
+<li>We will generate various partition sizes (small to large)</li>
+<li>Lab instructions (TODO)</li>
+</ul>
+<h3 id="lab-3-partition-size-vs-processing-times">Lab-3: Partition size vs processing times</h3>
+<ul>
+<li>In this lab, we will run Spark jobs on data of various partition sizes and compare the results</li>
+<li>Lab instructions (TODO)</li>
+</ul>
+<h3 id="lab-4-merging-small-files-into-large-files">Lab-4: Merging small files into large files</h3>
+<ul>
+<li>In this lab, we will explore how to detect small files and merge them into large files</li>
+<li>Lab instructions (TODO)</li>
+</ul>
+<h2 id="review-and-key-takeaways">Review and Key Takeaways</h2>
+<p>After completing this chapter</p>
+<ul>
+<li>You should be able to answer the ‘Knowledge Check’ questions comfortably (see start of the document)</li>
+<li>Deal with small files and work with them effectively using Spark</li>
+</ul>

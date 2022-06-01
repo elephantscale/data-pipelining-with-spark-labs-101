@@ -1,0 +1,48 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="accessing-hdfs-data-from-spark">Accessing HDFS Data from Spark</h1>
+<h2 id="overview">Overview</h2>
+<p>A quick test to accessing HDFS files from Spark</p>
+<h2 id="duration">Duration</h2>
+<p>15 minutes</p>
+<h2 id="step-1-gain-access-to-hadoop-cluster">Step-1 : Gain Access to Hadoop Cluster</h2>
+<p>Plese follow the guidelines provided to you by the instructor, to gain access to Hadoop cluster</p>
+<h2 id="step-2-copying-files-into-hdfs">Step-2 : Copying files into HDFS</h2>
+<p>You will have a home directory in HDFS under <code>/user</code> directory. So if your name is <code>mrmeow</code> your home directory in HDFS will be <code>/user/mrmeow</code></p>
+<p>Let’s create this directory, if it doesn’t exist</p>
+<p>Note : Replace user name <code>mrmeow</code> with your own username :-)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>       hdfs  dfs mkdir <span class="at">-p</span>   /user/mrmeow/</span></code></pre></div>
+<p>Next create a directory for transaction data</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>       hdfs  dfs mkdir <span class="at">-p</span>  transactions/sample</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># if the above command fails, specify the full path</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>       hdfs  dfs mkdir <span class="at">-p</span>  /user/mrmeow/transactions/sample</span></code></pre></div>
+<p>Copy some sample data into HDFS. We have some data in <code>data/transactions</code> directory</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure you are in the project dir</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>       hdfs   dfs <span class="at">-put</span>  data/transactions/transactions-sample.csv    transactions/sample/</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># verify the file is copied successfully</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>       hdfs   dfs <span class="at">-ls</span>    transactions/sample/</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># you should see files</span></span></code></pre></div>
+<h2 id="step-3-access-hdfs-data-from-spark">Step-3: Access HDFS Data from Spark</h2>
+<p>Start Spark shell</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>       pyspark</span></code></pre></div>
+<p>And load the file as follows in Spark shell. To access HDFS files, we may need to specify full path</p>
+<ul>
+<li>start with simple path <code>transactions/sample/</code></li>
+<li>if that doesn’t work, specify full path : <code>/user/mrmeow/transactions/sample</code> (change username <code>mrmeow</code> to yours, of course)</li>
+<li>If that doesn’t work, specify full HDFS URL as follows.
+<ul>
+<li>URL will start with <code>hdfs://</code> (just like <code>http://</code>)</li>
+<li>It will include fully qualified hostname of Hadoop namenode</li>
+<li>And then will have full path of files or directories</li>
+<li><code>hdfs://nn1.company.com/user/mrmeow/transactions/sample/</code></li>
+<li>You will need to adjust the URL according to your cluster settings</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.read.csv(<span class="st">&#39;/user/mrmeow/transactions/sample/&#39;</span>, header<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.count()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df.show()</span></code></pre></div>
+<p>If you are successfuly able to load the file, you are set.</p>
+<h2 id="takeaways">Takeaways</h2>
+<p>In this lab, we verified your access to HDFS</p>

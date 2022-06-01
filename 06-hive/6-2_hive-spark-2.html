@@ -1,0 +1,82 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="querying-hive-tables-from-spark">Querying Hive Tables from Spark</h1>
+<h2 id="overview">Overview</h2>
+<p>We will run some queries on Hive tables</p>
+<h2 id="duration">Duration</h2>
+<p>30-40 minutes</p>
+<h2 id="depends-on">Depends on</h2>
+<p><a href="6-1_hive-spark.html">Lab 6.1</a></p>
+<h2 id="step-1-setup-hive-table">Step-1: Setup Hive Table</h2>
+<p>You may already have transaction data setup on Hive. Instructor will provide access details.</p>
+<p>If not you can setup your own Hive table by following the instructions.</p>
+<p>We will use the data we generated earlier in <a href="../05-hdfs/5-2_generate-data.html">lab 5.2 - generating data in HDFS</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   hive</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- create your own db</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>hive<span class="op">&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">set</span> hive.cli.print.<span class="kw">current</span>.db<span class="op">=</span><span class="kw">true</span>;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- </span><span class="al">TODO</span><span class="co">: change the db name </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>     <span class="kw">create</span> <span class="kw">database</span> MY_NAME_db; </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- </span><span class="al">TODO</span><span class="co">: switch to your db</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">use</span> MY_NAME_db;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- </span><span class="al">TODO</span><span class="co">: Create the following transaction table</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- </span><span class="al">TODO</span><span class="co">: update the data location to match your HDFS location</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CREATE</span> EXTERNAL <span class="kw">TABLE</span> transactions (</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="kw">id</span> STRING,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            `timestamp` <span class="dt">TIMESTAMP</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            mti STRING,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            card_number STRING,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            amount_customer <span class="dt">DECIMAL</span> (<span class="dv">10</span>,<span class="dv">2</span>),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            merchant_type STRING,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            merchant_id STRING,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            merchant_address STRING,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            ref_id STRING,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            amount_merchant  <span class="dt">DECIMAL</span> (<span class="dv">10</span>,<span class="dv">2</span>),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            response_code STRING</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="kw">ROW</span> FORMAT DELIMITED</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        FIELDS TERMINATED <span class="kw">BY</span> <span class="st">&#39;,&#39;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        stored <span class="kw">as</span> textfile</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        LOCATION <span class="st">&#39;/user/me/transactions/csv&#39;</span>  ;</span></code></pre></div>
+<p>Verify we have data in Hive tables</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hive<span class="op">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> transactions <span class="kw">limit</span> <span class="dv">10</span>;</span></code></pre></div>
+<h2 id="step-2-query-hive-table-from-spark">Step-2: Query Hive Table from Spark</h2>
+<p>Launch Spark shell</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   pyspark</span></code></pre></div>
+<p>Verify table acceess from pyspark</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: change the dbname</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pprint(spark.catalog.listTables(<span class="st">&quot;MY_NAME_DB&quot;</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># you should see the transaction table</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Let&#39;s do a query</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>spark.sql(<span class="st">&#39;select * from MY_NAME_DB.transactions&#39;</span>).show()</span></code></pre></div>
+<h2 id="step-3-query-1-find-top-spending-card-numbers">Step-3: Query 1: Find top spending card numbers</h2>
+<p>Do an aggregte query on the data.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sql_query <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">select card_number, SUM(amount_customer)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">from MY_NAME_DB.transactions</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">group by ???</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">order by ???</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>top_spenders <span class="op">=</span> spark.sql(sql_query)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (top_spenders.count())</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>top_spenders.show(<span class="dv">10</span>)</span></code></pre></div>
+<h2 id="step-4-query-on-yarn">Step-4: Query on YARN</h2>
+<p>Run the query on YARN cluster.</p>
+<p>Start pyspart as below and execute the same query.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   pyspark <span class="at">--master</span> yarn</span></code></pre></div>
+<p>Observe the query running metrics from Spark UI and YARN UI</p>
+<h3 id="step-5-bonus-lab">Step-5: Bonus Lab</h3>
+<p>Come up with a few more queries on the data.</p>

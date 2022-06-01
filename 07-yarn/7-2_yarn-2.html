@@ -1,0 +1,51 @@
+<p><img src="../assets/images/spark-yarn-1.png" style="width:90%;"></p>
+<h2 id="spark-and-yarn">Spark and YARN</h2>
+<h2 id="overview">Overview</h2>
+<p>In this lab, we will tweak YARN settings for Spark jobs</p>
+<h2 id="duration">Duration</h2>
+<p>30 minutes</p>
+<h2 id="depends-on">Depends on</h2>
+<p><a href="7-1_yarn-1.html">Lab 7.1</a></p>
+<h2 id="step-1-run-sql-query-in-interactive-mode">Step-1: Run SQL query in interactive mode</h2>
+<p>Start pyspark in interactive mode, and run a SQL query</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   pyspark <span class="at">--master</span> yarn <span class="at">--deploy-mode</span> client</span></code></pre></div>
+<p>And try this query on spark shell</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the transaction data from HDFS</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">## </span><span class="al">TODO</span><span class="co">: Adjust the data path accordingly</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.read.csv(<span class="st">&#39;/user/me/transactions/csv&#39;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Register a temp table</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df.createOrReplaceTempView(<span class="st">&quot;transactions&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Run a simple SQL query</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>spark.sql (<span class="st">&#39;select count(*) from transactions&#39;</span>).show()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">## Run an aggregate query</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Find the top merchants per amount charged</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>sql_str <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">select merchant_id, SUM(amount_merchant) as total</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">from transactions</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">group by merchant_id</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">order by  total DESC</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>spark.sql(sql_str).show()</span></code></pre></div>
+<p>Make sure this query works first.</p>
+<h2 id="step-2-optimize-the-query">Step-2: Optimize the Query</h2>
+<p>When submitting to YARN, we can tweak some settings.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   pyspark <span class="at">--master</span> yarn <span class="at">--deploy-mode</span> client <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">--executor-memory</span> 4g  <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">--num-executors</span> 6</span></code></pre></div>
+<p>Parameters explained:</p>
+<ul>
+<li><code>executor memory</code>: how much memory each JVM executor gets</li>
+<li><code>num-executors</code>: how many executors to launch</li>
+</ul>
+<p>Read the <a href="https://spark.apache.org/docs/latest/running-on-yarn.html">Spark and YARN page</a> for some detailed explanations.</p>
+<p><strong>Action:</strong> Start with the above settings and see if the query runs faster.</p>
+<h2 id="step-3-run-in-yarn-mode">Step-3: Run in YARN mode</h2>
+<ul>
+<li>Submit the above query in YARN cluster mode.</li>
+<li>Experiment with various parameters</li>
+</ul>

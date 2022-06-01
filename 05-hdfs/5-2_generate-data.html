@@ -1,0 +1,69 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="datagen-with-various-partition-sizes">Datagen with Various Partition Sizes</h1>
+<h2 id="overview">Overview</h2>
+<p>In this lab, we will generate data sizes with various partition sizes</p>
+<h2 id="duration">Duration</h2>
+<p>30 - 60 mins</p>
+<h2 id="step-1-inspect-data-generator-script">Step-1: Inspect Data Generator Script</h2>
+<p>The script is located at : <code>03-data-geneator/datagen-tx-large.scala</code></p>
+<p>You can modify the following attributes to generate various size data</p>
+<ul>
+<li>around line number 22, set this generate as many rows as needed<br />
+<code>val numRows = aMillion * 1</code></li>
+<li>around line number 26, set this to desired number of partitions<br />
+<code>val numPartitions = 10</code><br />
+</li>
+<li>around line number 31, adjust to your save location, usually in HDFS (Adjust for your HDFS settings)<br />
+<code>val save_location = "/user/me/transactions/a"</code></li>
+</ul>
+<p>Here are some sample settings to generate - 10 million rows - into 50 partitions</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> numRows <span class="op">=</span> aMillion <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> numPartitions <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> save_location <span class="op">=</span> <span class="st">&quot;/user/me/transactions/a&quot;</span></span></code></pre></div>
+<h2 id="step-2-run-the-data-generator">Step-2: Run the Data Generator</h2>
+<h3 id="to-run-in-local-mode">To run in local mode</h3>
+<p>Edit the data-generator script</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> numRows <span class="op">=</span> aMillion <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> numPartitions <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> save_location <span class="op">=</span> <span class="st">&quot;data/transactions/a/&quot;</span></span></code></pre></div>
+<p>Arguments explained:</p>
+<ul>
+<li>Allocating 4 GB memory for Spark driver and Spark executor</li>
+<li>Running in local mode (<code>--master 'local[*]'</code>)</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure you are in the labs root dir</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-shell   <span class="at">--driver-memory</span> 4g <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">--executor-memory</span> 4g   <span class="at">--master</span> <span class="st">&#39;local[*]&#39;</span> <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">-i</span> 03-data-generator/datagen-tx-large.scala</span></code></pre></div>
+<h3 id="to-run-on-cluster">To Run on cluster</h3>
+<p>Arguments explained: - Allocating 4 GB memory for Spark driver and Spark executor - Connecting to YARN cluster (<code>--master yarn</code>)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure you are in the labs root dir</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-shell   <span class="at">--driver-memory</span> 4g <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">--executor-memory</span> 4g   <span class="at">--master</span> yarn <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">-i</span> 03-data-generator/datagen-tx-large.scala</span></code></pre></div>
+<h2 id="step-3-inspect-generated-data">Step-3: Inspect generated data</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   hdfs dfs <span class="at">-ls</span>  transactions/a</span></code></pre></div>
+<p>The files will be in CSV directory. Note the following:</p>
+<ul>
+<li>How many files are generated (should be equal to number of partitions)</li>
+<li>And each files size (partition size)</li>
+</ul>
+<h2 id="step-4-generate-data-at-various-sizes">Step-4: Generate data at various sizes</h2>
+<p>Adjust the settings and rerun the above script to generate data of various sizes</p>
+<p>Here are some stats from sample runs.</p>
+<p>sample run 1:</p>
+<ul>
+<li>rows = 1 million</li>
+<li>partitions = 10</li>
+<li>each partition is about 17 MB</li>
+</ul>
+<p>Sample run 2:</p>
+<ul>
+<li>Rows = 10 million</li>
+<li>partitions = 10</li>
+<li>each partition is about 173 MB</li>
+</ul>

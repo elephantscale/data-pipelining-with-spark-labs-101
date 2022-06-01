@@ -1,0 +1,57 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="lab-1-2-accessing-spark-cluster">Lab 1-2: Accessing Spark Cluster</h1>
+<p>In this lab, you will gain access to your organization’s Spark cluster.</p>
+<h2 id="step-1-login-to-the-cluster">Step-1: Login to the cluster</h2>
+<p>Instructions will be made available.</p>
+<h2 id="step-2-launch-spark-shell">Step-2: Launch Spark Shell</h2>
+<p>In the terminal type the following:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>       spark-shell</span></code></pre></div>
+<p>This will drop you into spark shell as follows</p>
+<pre class="text"><code>Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  &#39;_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.2.1
+      /_/</code></pre>
+<p>In the spark shell type the following command</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> spark<span class="op">.</span><span class="fu">range</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">10</span><span class="op">).</span>show</span></code></pre></div>
+<p>You will see the output as follows:</p>
+<pre class="text"><code>| id|
++---+
+|  1|
+|  2|
+|  3|
+|  4|
+|  5|
+|  6|
+|  7|
+|  8|
+|  9|
++---+</code></pre>
+<h2 id="step-3-run-a-hello-world-spark-application">Step-3: Run a ‘hello world’ Spark application</h2>
+<p>Here we will run a very simple Spark program. We are going to calculate the value of pi (π)</p>
+<p>First let’s run in local mode:</p>
+<p>Note: You may have to change the jar file locations, in the following command</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   <span class="va">$SPARK_HOME</span>/bin/spark-submit <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">--master</span> local <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">--class</span> org.apache.spark.examples.SparkPi  <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>              <span class="va">$SPARK_HOME</span>/examples/jars/spark-examples_2.12-3.2.1.jar <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>              100   <span class="dv">2</span><span class="op">&gt;</span> /dev/null</span></code></pre></div>
+<p>Location of <code>spark-examples.jar</code> might vary. You will need to adjust it for your environment.</p>
+<p>Some possiblities are:</p>
+<ul>
+<li>$SPARK_HOME/examples/jars/spark-examples_2.12-3.2.1.jar</li>
+<li>/usr/local/lib/spark/jars/spark-examples_2.12-3.2.1.jar</li>
+</ul>
+<p>The output may look like :</p>
+<pre class="text"><code>Pi is roughly 3.1418967141896714</code></pre>
+<p>Next run in ‘cluster’ mode</p>
+<p>Note: You may have to change the jar file locations, in the following command</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   <span class="va">$SPARK_HOME</span>/bin/spark-submit <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">--master</span> yarn <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">--class</span> org.apache.spark.examples.SparkPi  <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="va">$SPARK_HOME</span>/examples/jars/spark-examples_2.12-3.2.1.jar <span class="dt">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>              100   <span class="dv">2</span><span class="op">&gt;</span> /dev/null</span></code></pre></div>
+<p>The output will be similar to</p>
+<pre class="text"><code>Pi is roughly 3.1413255141325513</code></pre>

@@ -1,0 +1,194 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="data-generator">Data Generator</h1>
+<h2 id="objective">Objective</h2>
+<p>Generate data to be used in our Spark labs</p>
+<h2 id="data-types">Data Types</h2>
+<p>We have the following data types</p>
+<h3 id="transaction-data">Transaction Data</h3>
+<p>This is <strong>large</strong> data (100s of millions of rows)</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 13%" />
+<col style="width: 9%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 5%" />
+<col style="width: 21%" />
+<col style="width: 13%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">timestamp</th>
+<th style="text-align: right;">mti</th>
+<th style="text-align: right;">card_number</th>
+<th style="text-align: right;">amount_customer</th>
+<th style="text-align: right;">merchant_type</th>
+<th style="text-align: right;">merchant_id</th>
+<th style="text-align: left;">merchant_address</th>
+<th style="text-align: left;">ref_id</th>
+<th style="text-align: right;">amount_merchant</th>
+<th style="text-align: right;">response_code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">c0538d79-c866-4417-be4d-672dc04d4628</td>
+<td style="text-align: left;">2017-09-16 18:36:59.557</td>
+<td style="text-align: right;">0100</td>
+<td style="text-align: right;">4463221065841858</td>
+<td style="text-align: right;">6.65</td>
+<td style="text-align: right;">1760</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Awesome Bakery, 136 Hillview St, San Jose, WA, USA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">3d759627-cf66-43ae-a4b2-4232268489df</td>
+<td style="text-align: left;">2017-09-16 18:37:01.800</td>
+<td style="text-align: right;">0110</td>
+<td style="text-align: right;">4463221065841858</td>
+<td style="text-align: right;">6.65</td>
+<td style="text-align: right;">1760</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Awesome Bakery, 136 Hillview St, San Jose, WA, USA</td>
+<td style="text-align: left;">c0538d79-c866-4417-be4d-672dc04d4628</td>
+<td style="text-align: right;">6.45</td>
+<td style="text-align: right;">33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">8a97a4e4-fa1c-4169-8d0b-5d200e00569d</td>
+<td style="text-align: left;">2020-03-31 07:06:28.451</td>
+<td style="text-align: right;">0100</td>
+<td style="text-align: right;">4225767294992126</td>
+<td style="text-align: right;">77.98</td>
+<td style="text-align: right;">3567</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Four Seasons Hardware, 330 Market St, Burlingame, NV, USA</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rewards-points-data">Rewards Points Data</h3>
+<p>This is <strong>small</strong> data (few 100 rows)</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">merchant_id</th>
+<th style="text-align: right;">reward_points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">14</td>
+</tr>
+</tbody>
+</table>
+<p>You can also generate data by following the instructions below.</p>
+<h2 id="lab-1-generate-rewards-data">Lab-1: Generate Rewards Data</h2>
+<p>This is fairly small data (few hundred rows).</p>
+<p>Activate python env and install dependencies.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you have a seperate a separate python env, activate it</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda activate pyspark</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if &#39;tabulate&#39; package is missing, install it this way</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda install tabulate</span></code></pre></div>
+<p>Now generate rewards data:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/03-data-generator</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   python  datagen-merchant-rewards.py</span></code></pre></div>
+<p>This will save data in file <code>reward-points.csv</code></p>
+<h2 id="lab-2-generate-sample-transaction-data">Lab-2: Generate Sample Transaction Data</h2>
+<p>We will use a Python script to generate some sample data.</p>
+<ul>
+<li>Run this notebook in : <strong><code>data-generator/datagen-tx-small-1.ipynb</code></strong> (<a href="datagen-tx-small-1.html">html version</a>)</li>
+<li>Or python script <strong><code>datagen-tx-small-1.py</code></strong></li>
+<li>The helper functions are in <strong><code>data-generator/datagen_helper.py</code></strong></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/03-data-generator</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   python   datagen-tx-small-1.py</span></code></pre></div>
+<p>This will generate a small sample of data.</p>
+<p>To generate a 10,000 rows, try this script:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/03-data-generator</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   python datagen-tx-medium.py</span></code></pre></div>
+<p>You can edit the above script and update <code>rows =</code> to a desired number.</p>
+<h2 id="lab-3-generate-large-amount-of-transacation-data-using-spark">Lab 3: Generate Large Amount of Transacation Data Using Spark</h2>
+<p>In this lab, we will use built in Spark dataframe API to generate large amount of data.</p>
+<p>This script is written in Scala : <strong><code>datagen-tx-large.scala</code></strong></p>
+<p>Inspect the configuration settings in the above file:</p>
+<ul>
+<li><code>val numRows = aMillion * 1</code> : default is one million rows</li>
+<li><code>val numPartitions = 10</code> : generate data in 10 partitions</li>
+<li><code>val save_location = "data/transactions/1"</code> : where to save data (default : local)</li>
+<li><code>val save_format = "csv"</code> : save format (default csv)</li>
+</ul>
+<p>First test on local mode:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/03-data-generator</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-shell <span class="at">--master</span> <span class="st">&#39;local[*]&#39;</span> <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">--driver-memory</span> 4g  <span class="at">--executor-memory</span> 4g <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">-i</span> datagen-tx-large.scala</span></code></pre></div>
+<p>To run on Hadoop cluster,</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/03-data-generator</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-shell <span class="at">--master</span> yarn <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">--driver-memory</span> 4g  <span class="at">--executor-memory</span> 4g <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">-i</span> datagen-tx-large.scala</span></code></pre></div>
+<p><strong>ACTION: Generate transaction data in CSV format</strong>:</p>
+<ul>
+<li>By default, the script will generate CSV data in <code>../data/transactions/csv</code> directory.</li>
+<li>Inspect the directory as follows:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   ls <span class="at">-lh</span>  ../data/transactions/csv</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># see data size</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   du <span class="at">-skh</span>  ../data/transactions/csv</span></code></pre></div>
+<p><strong>ACTION: Generate transaction data in parquet format</strong></p>
+<ul>
+<li>Edit file <code>datagen-tx-large.scala</code> file and change <code>val save_format = "parquet"</code></li>
+<li>The parquet data will be generated in <code>../data/transactions/parquet</code> folder</li>
+<li>Run the data gen script as outline above</li>
+<li>Inspect the directory as follows:</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   ls <span class="at">-lh</span>  ../data/transactions/parquet</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># see data size</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   du <span class="at">-skh</span>  ../data/transactions/parquet</span></code></pre></div>
+<p><strong>ACTION: Notice the size difference between csv and parquet</strong></p>
+<h2 id="lab-4-reading-back-generated-data-to-verify">Lab-4: Reading back generated data to verify</h2>
+<ul>
+<li>Inspect the file <strong><code>load-data.py</code></strong></li>
+<li>Around line-10, make any changes needed</li>
+<li>Run the script as follows</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/03-data-generator</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-submit  <span class="at">--master</span> <span class="st">&#39;local[*]&#39;</span> <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">--driver-class-path</span> ../logging/  <span class="dt">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                  load-data.py</span></code></pre></div>

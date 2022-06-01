@@ -15,7 +15,7 @@ IFS=$(echo -en "\n\b")
 # copy every thing to output dir
 
 OUTPUT_DIR1="output"
-OUTPUT_DIR2="effective-spark-lesson"
+OUTPUT_DIR2=$curr_dir_name
 OUTPUT_DIR3="${OUTPUT_DIR1}/${OUTPUT_DIR2}"
 rm -rf $OUTPUT_DIR1; mkdir -p $OUTPUT_DIR3
 

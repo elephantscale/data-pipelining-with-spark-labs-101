@@ -1,0 +1,29 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="spark-and-hdfs-labs">Spark and HDFS Labs</h1>
+<h2 id="spark-and-hdfs">Spark and HDFS</h2>
+<p>HDFS chops files into partitions and these partitions are distributed across the cluster</p>
+<p><img src="../assets/images/distributed_file_blocks.png" style="width:90%;"></p>
+<p>Spark works well with HDFS. Spark can understand file layout and prioritize local data.</p>
+<p><img src="../assets/images/spark_and_hdfs.png" style="width:90%;"></p>
+<p>Spark will spin up a task per partition to process data. This way, we get parallelism</p>
+<p><img src="../assets/images/distributed_processing.png" style="width:90%;"></p>
+<h2 id="lab-5.1-accessing-hdfs-files-from-spark">Lab-5.1: Accessing HDFS files from Spark</h2>
+<p>This is a quick lab we will access data on HDFS from Spark</p>
+<p><a href="5-1_accesssing-hdfs-files.html">Lab 5.1 instructions</a></p>
+<h2 id="lab-5.2-generating-data">Lab-5.2: Generating data</h2>
+<ul>
+<li>In this lab, you will use a <strong>data generator script</strong> to create some sample data.</li>
+<li>We can configure partition size for the generated data</li>
+<li>We will generate various partition sizes (small to large)</li>
+</ul>
+<p><a href="5-2_generate-data.html">Lab 5.2 instructions</a></p>
+<h2 id="lab-5.3-partition-size-vs-processing-times">Lab-5.3: Partition size vs processing times</h2>
+<ul>
+<li>In this lab, we will run Spark jobs on data of various partition sizes and compare the results</li>
+</ul>
+<p><a href="5-3_partition-size-and-processing.html">Lab 5.3 instructions</a></p>
+<h2 id="lab-5.4-merging-small-files-into-large-files">Lab-5.4: Merging small files into large files</h2>
+<ul>
+<li>In this lab, we will explore how to detect small files and merge them into large files</li>
+</ul>
+<p><a href="5-4_merging-small-files.html">Lab 5.4 instructions</a></p>

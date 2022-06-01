@@ -1,4 +1,4 @@
-# Development of Learning Path
+# Development Instructions
 
 To generate lab bundle, run
 

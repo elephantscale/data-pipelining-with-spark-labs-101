@@ -1,0 +1,78 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="lab-1-1-setting-up-spark-locally">Lab 1-1: Setting up Spark Locally</h1>
+<h2 id="operating-system">Operating System</h2>
+<p>Setup is easier if you have either <strong>MacOS or Linux</strong>.<br />
+If you are on Windows, download the <a href="https://hub.docker.com/r/elephantscale/es-training">docker image</a> and do the setup in the sandbox.</p>
+<h2 id="software-needed">Software Needed</h2>
+<ul>
+<li>Java version 11 or later</li>
+<li>Anaconda Python version 3.x</li>
+<li>A few more python packages</li>
+<li>Spark version 3.0 or latest</li>
+<li>our data files</li>
+</ul>
+<h2 id="java-11">Java 11</h2>
+<p>Download and install JDK (not JRE) v11 or later from <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">here</a>.<br />
+Verify you have the correct version by doing</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">java</span> <span class="at">-version</span></span></code></pre></div>
+<h2 id="anaconda-python">Anaconda Python</h2>
+<p>Download and install Anaconda Python version 3.x from <a href="https://www.anaconda.com/download/">here</a>.</p>
+<h2 id="create-a-seperate-environment-for-spark-libraries">Create a seperate environment for Spark libraries</h2>
+<p>It is a good practice to have seperate environments for different developmnet needs. This way, we can have clean dev environments and minimize version conflicits.</p>
+<p>Here is how to create one using Anaconda</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list all environments</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda env list</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new env for Spark with python 3.8</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># this will create the env called &#39;pyspark&#39;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda create <span class="at">--name</span> pyspark  python=3.8</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># activate the new env</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda activate pyspark</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># you will most likely see the terminal prompt change to &#39;pyspark&#39; indicating that you are in the right dev environment</span></span></code></pre></div>
+<p><strong>Note</strong>: Run all the following commands within ‘pyspark’ environment you just created.</p>
+<p>Here are some handy commands to deal with conda environments:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list all environments</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The currently active env will have a * next to it</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda env list</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># activate an env</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda activate pyspark</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># deactivate</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda decativate</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># to see all installed packages</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda list</span></code></pre></div>
+<h2 id="install-following-add-on-packages">Install following add-on packages</h2>
+<p>Open a <strong>new</strong> terminal and run the following command</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda install numpy  pandas  matplotlib  seaborn  jupyter  jupyterlab</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda install <span class="at">-c</span> conda-forge findspark</span></code></pre></div>
+<h2 id="download-spark">Download Spark</h2>
+<ul>
+<li>Download latest Spark from <a href="https://spark.apache.org/downloads.html">here</a></li>
+<li>Unzip the downloaded zip file</li>
+<li>where Spark is unzipped is the SPARK_HOME</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   wget  https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   tar xvf spark-3.2.1-bin-hadoop3.2.tgz</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   mv  spark-3.2.1-bin-hadoop3.2   spark</span></code></pre></div>
+<h2 id="edit-run-jupyter.sh">Edit <code>run-jupyter.sh</code></h2>
+<p>This file is located in the labs directory. Edit this file to match your environment.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># activate the environment</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   conda activate pyspark</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co"> : Edit the following lines   </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">SPARK_HOME=$HOME</span>/apps/spark   </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab   </span></code></pre></div>
+<h2 id="run-the-labs">Run the labs</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   ./run-jupyter.sh</span></code></pre></div>
+<h2 id="open-and-run-testing123.ipynb-file">Open and run <code>testing123.ipynb</code> file</h2>
+<ul>
+<li>Run this file under Jupyter environment</li>
+<li>This file will check your setup.<br />
+</li>
+<li>If there are no errors here, then you are good to go</li>
+</ul>

@@ -16,6 +16,7 @@
 Here is how to run it:
 
 ```bash
+$   cd  data-pipelining-with-spark-labs-101/04-spark-sql
 $   spark-submit --master 'local[*]' \
                  --driver-class-path ../logging/ \
                  sql-2-query-large-data.py

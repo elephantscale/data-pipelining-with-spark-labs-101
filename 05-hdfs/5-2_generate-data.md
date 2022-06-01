@@ -52,7 +52,7 @@ Arguments explained:
 
 ```bash
 # make sure you are in the labs root dir
-$   cd /labs/top-level/dir
+$   cd  data-pipelining-with-spark-labs-101
 
 $   spark-shell   --driver-memory 4g \
           --executor-memory 4g   --master 'local[*]' \
@@ -68,7 +68,7 @@ Arguments explained:
 
 ```bash
 # make sure you are in the labs root dir
-$   cd /labs/top-level/dir
+$   cd  data-pipelining-with-spark-labs-101
 
 $   spark-shell   --driver-memory 4g \
           --executor-memory 4g   --master yarn \

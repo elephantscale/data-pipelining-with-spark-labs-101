@@ -32,12 +32,7 @@ This is **small** data (few 100 rows)
 |             4 |              10 |
 |             5 |              14 |
 
-## Data Locations
 
-We have the data files already generated for you.  Check here.
-
-* Transaction data : TODO
-* Rewards data : TODO
 
 You can also generate data by following the instructions below.
 
@@ -48,14 +43,18 @@ This is fairly small data (few hundred rows).
 Activate python env and install dependencies.
 
 ```bash
-    $   conda activate pyspark
-    $   conda install tabulate
+# if you have a seperate a separate python env, activate it
+$   conda activate pyspark
+
+# if 'tabulate' package is missing, install it this way
+$   conda install tabulate
 ```
 
 Now generate rewards data:
 
 ```bash
-    $   python  datagen-merchant-rewards.py
+$   cd  data-pipelining-with-spark-labs-101/03-data-generator
+$   python  datagen-merchant-rewards.py
 ```
 
 This will save data in file `reward-points.csv`
@@ -69,6 +68,7 @@ We will use a Python script to generate some sample data.
 - The helper functions are in  **`data-generator/datagen_helper.py`**
 
 ```bash
+$   cd  data-pipelining-with-spark-labs-101/03-data-generator
 $   python   datagen-tx-small-1.py
 ```
 
@@ -77,6 +77,7 @@ This will generate a small sample of data.
 To generate a 10,000 rows, try this script:
 
 ```bash
+$   cd  data-pipelining-with-spark-labs-101/03-data-generator
 $   python datagen-tx-medium.py
 ```
 
@@ -98,17 +99,19 @@ Inspect the configuration settings in the above file:
 First test on local mode:
 
 ```bash
-    $   spark-shell --master 'local[*]' \
-                    --driver-memory 4g  --executor-memory 4g \
-                    -i datagen-tx-large.scala
+$   cd  data-pipelining-with-spark-labs-101/03-data-generator
+$   spark-shell --master 'local[*]' \
+                --driver-memory 4g  --executor-memory 4g \
+                -i datagen-tx-large.scala
 ```
 
 To run on Hadoop cluster,
 
 ```bash
-    $   spark-shell --master yarn \
-                    --driver-memory 4g  --executor-memory 4g \
-                    -i datagen-tx-large.scala
+$   cd  data-pipelining-with-spark-labs-101/03-data-generator
+$   spark-shell --master yarn \
+                --driver-memory 4g  --executor-memory 4g \
+                -i datagen-tx-large.scala
 ```
 
 **ACTION: Generate transaction data in CSV format**:  
@@ -147,7 +150,8 @@ $   du -skh  ../data/transactions/parquet
 * Run the script as follows
 
 ```bash
-    $   spark-submit  --master 'local[*]' \
-                      --driver-class-path ../logging/  \
-                      load-data.py
+$   cd  data-pipelining-with-spark-labs-101/03-data-generator
+$   spark-submit  --master 'local[*]' \
+                  --driver-class-path ../logging/  \
+                  load-data.py
 ```

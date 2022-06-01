@@ -1,0 +1,30 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="spark-sql-labs">Spark SQL Labs</h1>
+<h2 id="lab-4.1-spark-sql-with-small-data">Lab-4.1 : Spark SQL with small data</h2>
+<ul>
+<li>We will start with small dataset.</li>
+<li>Follow this notebook <a href="sql-1-query-small-data.ipynb">sql-1-query-small-data.ipynb</a> ( <a href="sql-1-query-small-data.html">html version</a>)</li>
+</ul>
+<h2 id="lab-4.2-load-data-and-query">Lab-4.2: Load data and query</h2>
+<ul>
+<li>In this lab, we will try SQL queries with large amount of data</li>
+<li>You can use pre-generated data or the data you generated in previous lab</li>
+<li>Lab file : <a href="sql-2-query-large-data.py">sql-2-query-large-data.py</a></li>
+</ul>
+<p>Here is how to run it:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/04-spark-sql</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-submit <span class="at">--master</span> <span class="st">&#39;local[*]&#39;</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">--driver-class-path</span> ../logging/ <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 sql-2-query-large-data.py</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># to supply more memory</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-submit <span class="at">--master</span> <span class="st">&#39;local[*]&#39;</span> <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">--driver-class-path</span> ../logging/ <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">--driver-memory</span> 4g  <span class="at">--executor-memory</span> 4g <span class="dt">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                 sql-2-query-large-data.py</span></code></pre></div>
+<p>A few things to experiment:</p>
+<ul>
+<li>Load data in both CSV and parquet format. And measure the query speed. Do you see a noticeable difference?</li>
+<li>Enable ‘adaptive query optimizer (AQE)’ and run your queries. Do you see any noticeable difference?</li>
+<li>Use <code>explain</code> command to see what optimizations are applied to Spark SQL queries.</li>
+</ul>

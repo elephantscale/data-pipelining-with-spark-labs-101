@@ -4,7 +4,7 @@
 logs
 .~*
 output
-*.html
+#*.html
 *.pdf
 data/transactions/csv/*
 data/transactions/parquet/*

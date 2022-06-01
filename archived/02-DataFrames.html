@@ -1,0 +1,54 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="spark-dataframes">Spark DataFrames</h1>
+<h2 id="objective">Objective</h2>
+<p>Dataframes are the preferred way to program Spark. In this section you will learn about DataFrame APIs</p>
+<h2 id="what-you-will-learn">What You Will Learn</h2>
+<ul>
+<li>DataFrame architecture</li>
+<li>Using DataFrame APIs</li>
+</ul>
+<h2 id="knowledge-check">Knowledge Check</h2>
+<p><strong>What are the features of DataFrame API?</strong></p>
+<p><strong>What are the some of the data types supported in DataFrame?</strong></p>
+<p><strong>What are some supported file formats (text, csv ..etc) that are supported by Dataframe</strong></p>
+<p><strong>There are two ways to define schema. How?</strong></p>
+<p><strong>When inferring schema from datafiles, how can we limit the amount of data being read?</strong></p>
+<p><strong>What is the connection between ‘DataFrame’ and ‘DataSet’? What are the similarities and differences?</strong></p>
+<p><strong>How to convert from RDD/DataFrame/DataSets?</strong></p>
+<p><strong>What is Catalyst?</strong></p>
+<p><strong>What are some of the optimizations Catalyst can do?</strong></p>
+<h2 id="essential-reading">Essential Reading</h2>
+<ul>
+<li><a href="https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch03.html">Ch 3 - Apache Spark’s Structured APIs</a> from book <a href="https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/">Learning Spark - 2nd Edition</a></li>
+</ul>
+<h2 id="extra-reading">Extra Reading</h2>
+<ul>
+<li><a href="https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html">A Tale of Three Apache Spark APIs: RDDs vs DataFrames and Datasets</a> - A good article explaining the evolution of data models in Spark</li>
+<li><a href="https://data-flair.training/blogs/apache-spark-rdd-vs-dataframe-vs-dataset/">Apache Spark RDD vs DataFrame vs DataSet</a> - a good tutorial covering various aspects of data models</li>
+</ul>
+<h2 id="labs">Labs</h2>
+<p>Labs are in <strong><code>02-dataframes</code></strong> folder</p>
+<h3 id="lab-1---creating-a-dataframe-programatically">Lab 1 - Creating a DataFrame programatically</h3>
+<p>Create a small DataFrame programatically</p>
+<p>Lab-1 notebook: <code>02-dataframes/dataframes-1.ipynb</code> (<a href="02-dataframes/dataframes-1.html">html version</a>)</p>
+<h3 id="lab-2---read-a-dataframe-from-file">Lab 2 - Read a Dataframe from file</h3>
+<ul>
+<li>Read the CSV file from disk</li>
+<li>Print out the schema</li>
+<li>Perform an aggregate query on a column</li>
+</ul>
+<p>Lab-2 notebook: <code>02-dataframes/dataframes-2.ipynb</code> (<a href="02-dataframes/dataframes-2.html">html version</a>)</p>
+<h3 id="lab-3---specify-schema">Lab 3 - Specify Schema</h3>
+<ul>
+<li>We will continue with above lab.</li>
+<li>How ever we will specify the schema while loading data</li>
+</ul>
+<p>Lab-3 notebook: <code>02-dataframes/dataframes-3.ipynb</code> (<a href="02-dataframes/dataframes-3.html">html version</a>)</p>
+<h2 id="review-and-key-takeaways">Review and Key Takeaways</h2>
+<p>After completing this chapter:</p>
+<ul>
+<li>You should be able to answer the ‘Knowledge Check’ questions comfortably (see start of the document)</li>
+<li>Be able to create / read DataFrames</li>
+<li>Specify schema for the DataFrame</li>
+<li>Can perform queries on DataFrames</li>
+</ul>

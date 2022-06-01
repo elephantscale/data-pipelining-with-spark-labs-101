@@ -1,0 +1,73 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="spark-basics">Spark Basics</h1>
+<h2 id="objective">Objective</h2>
+<p>A quick introduction / refresher to Spark</p>
+<h2 id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Understand Spark architecture</li>
+<li>How Spark is different from from MapReduce</li>
+<li>Get to know Spark components</li>
+<li>How Spark executes code</li>
+<li>Get Spark running locally</li>
+<li>Run Spark on a cluster</li>
+</ul>
+<h2 id="knowledge-check">Knowledge Check</h2>
+<p>A quick check to gauge the knowledge in this section</p>
+<p><strong>Q1 - What were the problems with Hadoop MapReduce, and how is Spark solving them?</strong></p>
+<p>List your answers in about 3-4 bullets.</p>
+<p><strong>Q2 - Which one of these are <em>NOT</em> a Spark component</strong></p>
+<ul>
+<li>Spark SQL</li>
+<li>Spark YARN</li>
+<li>Spark ML</li>
+<li>Spark GraphX</li>
+</ul>
+<p><strong>Q3 - What is the function of ‘cluster manager’ in Spark? Name a few cluster managers used today</strong></p>
+<p><strong>Q4 - What is a driver , job, stage, task? How are they related?</strong></p>
+<p><strong>Q5 - What is the difference between ‘transformation’ and ‘action’</strong></p>
+<p><strong>Q6 - What do we mean by ‘lazy evaluation’? What are the implications of Lazy evaluation?</strong></p>
+<h2 id="essential-reading">Essential Reading</h2>
+<h3 id="spark-basics-1">Spark basics</h3>
+<ul>
+<li><a href="https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch01.html#introduction_to_apache_spark_a_unified_a">Chapter 1. Introduction to Apache Spark: A Unified Analytics Engine</a> from book <a href="https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/">Learning Spark - 2nd Edition</a></li>
+</ul>
+<h3 id="whats-new-in-spark-3">What’s new in Spark 3</h3>
+<ul>
+<li>Spark 3 is a big release that added a slew of performance related enhancements.</li>
+<li><a href="https://databricks.com/session_na20/deep-dive-into-the-new-features-of-apache-spark-3-0">Deep dive into Spark 3</a></li>
+<li><strong>Spark 3 - a 10 year evolution</strong> - a very nice video recap of Spark’s evolution and new features in Spark 3. <a href="https://databricks.com/session_na20/wednesday-morning-keynotes">Link-1</a> , <a href="https://youtu.be/OLJKIogf2nU">Link-2</a></li>
+</ul>
+<h2 id="extra-reading">Extra Reading</h2>
+<h3 id="spark-use-cases">Spark Use Cases</h3>
+<ul>
+<li>Databricks has an extensive collection of <a href="https://databricks.com/customers">customer success stories</a>. Worth a browse</li>
+<li><a href="http://bigdatausecases.info/technologies/spark">BigDataUseCases.info</a> has a large collection of Spark usescases Here are some highlights
+<ul>
+<li><a href="http://bigdatausecases.info/entry/migrating-from-rdbms-data-warehouses-to-apache-spark">Migrating from RDBMS to Spark at DBS Bank</a></li>
+<li><a href="http://bigdatausecases.info/entry/apache-spark-based-reliable-data-ingestion-in-datalake">Spark based Data Lake</a></li>
+<li><a href="http://bigdatausecases.info/entry/flowspec-apache-spark-pipelines-in-production">Spark pipelines in production</a></li>
+</ul></li>
+</ul>
+<h2 id="code">Code</h2>
+<p><a href="https://github.com/databricks/LearningSparkV2">Code repository for book ‘Learning Spark 2’</a></p>
+<h2 id="labs">Labs</h2>
+<p>Labs are in <strong><code>01-basics</code></strong> folder</p>
+<h3 id="lab-1-running-spark-locally">Lab-1 : Running Spark locally</h3>
+<p>Though Spark is designed to run on clusters, it is highly recommended that you have a local Spark setup. This allows you to experiment with Spark without needing to connect to a cluster.</p>
+<p><a href="01-basics/lab-1-local-spark-install.html">lab-1 instructions</a></p>
+<p>You may also read <a href="https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch02.html">Chapter 2. Downloading Apache Spark and Getting Started</a> from book <a href="https://learning.oreilly.com/library/view/learning-spark-2nd/9781492050032/">Learning Spark - 2nd Edition</a></p>
+<h3 id="lab-2-get-access-to-spark-devstaging-cluster">Lab-2: Get access to Spark dev/staging cluster</h3>
+<p>A typical Spark development goes like this:</p>
+<p><img src="../assets/images/workflow.png" style="width:90%;"></p>
+<p>Next logical step going from a laptop is to run your code on the dev/staging cluster.</p>
+<p><a href="01-basics/lab-2-spark-cluster.html">Lab-2 instructions</a></p>
+<h2 id="review-and-key-takeaways">Review and Key Takeaways</h2>
+<p>After completing this chapter:</p>
+<ul>
+<li>You should be able to answer the ‘Knowledge Check’ questions comfortably (see start of the document)</li>
+<li>Have a working Spark installation on your laptop</li>
+<li>Comfortable with Spark shell</li>
+<li>Comfortable with Spark UI (typically port 4040)</li>
+<li>Have access to the dev cluster</li>
+<li>Can deploy Spark code on dev cluster</li>
+</ul>

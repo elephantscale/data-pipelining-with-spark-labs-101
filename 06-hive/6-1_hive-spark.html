@@ -1,0 +1,45 @@
+<p><link rel='stylesheet' href='../assets/css/main.css'/></p>
+<h1 id="spark-and-hive">Spark and Hive</h1>
+<h2 id="overview">Overview</h2>
+<p>Access Hive tables from Spark</p>
+<p><img src="../assets/images/spark-and-hadoop-1.png" style="width:50%;"></p>
+<h2 id="duration">Duration</h2>
+<p>20 minutes</p>
+<h2 id="step-1-log-into-the-hadoop-cluster">Step-1: Log into the Hadoop Cluster</h2>
+<p>Follow the instructions provided to log into the hadoop cluster</p>
+<h2 id="step-2-access-hive">Step-2: Access Hive</h2>
+<p>Use hive shell…</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   hive</span></code></pre></div>
+<p>And in Hive shell, try the following comamnds to see databases and tables</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hive<span class="op">&gt;</span>  show databases;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- use default db</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>hive<span class="op">&gt;</span>  <span class="kw">use</span> <span class="kw">default</span>;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>hive<span class="op">&gt;</span> show <span class="kw">tables</span>;</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- switch to another db and list tables</span></span></code></pre></div>
+<h2 id="step-3-now-launch-spark-shell">Step-3: Now launch Spark Shell</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-shell <span class="at">--master</span> yarn</span></code></pre></div>
+<p>When the shell launches, you will see messages that it is connected to Hive.</p>
+<p>Specifying a custom port</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span>   spark-shell  <span class="at">--conf</span> spark.ui.port=4060</span></code></pre></div>
+<p>Turn off UI altogether</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span>   spark-shell  <span class="at">--conf</span> spark.ui.enabled=false</span></code></pre></div>
+<p>Turn off logs</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    sc.setLogLevel(<span class="st">&quot;WARN&quot;</span>)</span></code></pre></div>
+<h2 id="step-4-access-hive-metadata">Step-4: Access Hive Metadata</h2>
+<p>From within Spark-shell, try these commands</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pprint(spark.catalog.listDatabases())</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">## list tables in &#39;default&#39; database</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>pprint(spark.catalog.listTables(<span class="st">&quot;default&quot;</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">## </span><span class="al">TODO</span><span class="co">: Try another db</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>pprint(spark.catalog.listTables(<span class="st">&quot;db1&quot;</span>))</span></code></pre></div>
+<h2 id="takeaways">Takeaways</h2>
+<p>In this lab, you have verified Hive access from Spark</p>
