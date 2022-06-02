@@ -30,7 +30,7 @@ Generate the same amount of data, say 10 million rows, into 10 partitions and 50
 Launch Spark Shell
 
 ```bash
-$   pyspark --master 'local[*]'  --executor-memory 4g  --driver-memory 4g
+$   pyspark --master 'local[*]'  --executor-memory 2g  --driver-memory 2g
 
 ```
 
@@ -42,14 +42,38 @@ Issue this on Spark-Shell
 
 ## First read smaller partition size (about 35 MB each)
 # Adjust the path accordingly
-df1 = spark.read.csv('data/transactions/a/csv', header=True)
-df1.count()
+
+# read parquet files
+df1 = spark.read.parquet('transactions/large/parquet')
+
+# if reading CSV
+df1 = spark.read.csv('transactions/large/csv', header=True)
+
+
+### measure time
+import time
+
+t1 = time.time()
+count = df1.count()
+t2 = time.time()
+
+print ('count : {:,} rows,  time took : {:,.2f} secs'.format(count,  (t2-t1)))
 
 
 ## Then read larger partition size (about 174 MB each)
 # Adjust the path accordingly
-df2 = spark.read.csv('data/transactions/b/csv', header=True)
-df2.count()
+df2 = spark.read.parquet('transactions/large2/parquet')
+
+#df2 = spark.read.csv('transactions/large2/csv', header=True)
+
+### measure time
+import time
+
+t1 = time.time()
+count = df2.count()
+t2 = time.time()
+
+print ('count : {:,} rows,  time took : {:,.2f} secs'.format(count,  (t2-t1)))
 ```
 
 **Look at the Spark UI and note the following**
@@ -67,7 +91,7 @@ Make sure you have data generated in HDFS.
 Start pyspark
 
 ```bash
-$   pyspark  --master yarn  --executor-memory 4g  --driver-memory 4g
+$   pyspark  --master yarn  --executor-memory 2g  --driver-memory 2g
 ```
 
 Run the same code again
@@ -76,14 +100,36 @@ Run the same code again
 
 ## First read smaller partition size (about 35 MB each)
 # Adjust the path accordingly
-df1 = spark.read.csv('/user/me/data/transactions/a/csv', header=True)
-df1.count()
+## read parquet
+df1 = spark.read.parquet('transactions/large/parquet')
+## or csv
+df1 = spark.read.csv('transactions/large/csv', header=True)
+
+### measure time
+import time
+
+t1 = time.time()
+count = df1.count()
+t2 = time.time()
+
+print ('count : {:,} rows,  time took : {:,.2f} secs'.format(count,  (t2-t1)))
 
 
 ## Then read larger partition size (about 174 MB each)
 # Adjust the path accordingly
+df2 = spark.read.parquet('transactions/large2/parquet')
+## or csv
 df2 = spark.read.csv('/user/me/data/transactions/b/csv', header=True)
-df2.count()
+
+### measure time
+import time
+
+t1 = time.time()
+count = df2.count()
+t2 = time.time()
+
+print ('count : {:,} rows,  time took : {:,.2f} secs'.format(count,  (t2-t1)))
+
 ```
 
 **Look at the Spark UI and note the following**

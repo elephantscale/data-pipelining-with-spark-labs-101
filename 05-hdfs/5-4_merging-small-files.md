@@ -28,7 +28,7 @@ $   pyspark
 
 # load small partition data
 
-df1 = spark.read.csv('/user/me/transactions/a/csv', header=True)
+df1 = spark.read.csv('transactions/large/csv', header=True)
 
 # See how many partitions we have
 df1.rdd.getNumPartitions()
@@ -37,16 +37,16 @@ df1.rdd.getNumPartitions()
 df2 = df1.repartition(5)
 
 # save the new data
-df2.write.mode('overwrite').csv('/user/me/transactions/a2/')
+df2.write.mode('overwrite').csv('transactions/large3/')
 
 ```
 
 Now let's inspect the generated data
 
 ```bash
-$   hdfs dfs -ls /user/me/transactions/a/csv
+$   hdfs dfs -ls transactions/large/csv
 
-$   hdfs dfs -ls /user/me/transactions/a2/csv
+$   hdfs dfs -ls transactions/large3/csv
 ```
 
 Do you notice the partition size difference?

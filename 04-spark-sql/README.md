@@ -24,7 +24,7 @@ $   spark-submit --master 'local[*]' \
 # to supply more memory
 $   spark-submit --master 'local[*]' \
                  --driver-class-path ../logging/ \
-                 --driver-memory 4g  --executor-memory 4g \
+                 --driver-memory 2g  --executor-memory 2g \
                  sql-2-query-large-data.py
 ```
 

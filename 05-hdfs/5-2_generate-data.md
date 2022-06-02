@@ -21,7 +21,7 @@ You can modify the following attributes to generate various size data
 - around line number 26,  set this to desired number of partitions  
 `val numPartitions = 10`  
 - around line number 31,  adjust to your save location, usually in HDFS (Adjust for your HDFS settings)  
-`val save_location = "/user/me/transactions/a"`
+`val save_location = "transactions/large"`
 
 Here are some sample settings to generate 
 - 10 million rows
@@ -30,7 +30,7 @@ Here are some sample settings to generate
 ```scala
 val numRows = aMillion * 10
 val numPartitions = 50
-val save_location = "/user/me/transactions/a"
+val save_location = "transactions/large"
 ```
 
 ## Step-2: Run the Data Generator
@@ -40,46 +40,47 @@ val save_location = "/user/me/transactions/a"
 Edit the data-generator script
 
 ```scala
-val numRows = aMillion * 100
+val numRows = aMillion * 1
 val numPartitions = 10
-val save_location = "data/transactions/a/"
+val save_location = "transactions/large"
+val save_format = "parquet"
 ```
 
 Arguments explained:
 
-- Allocating 4 GB memory for Spark driver and Spark executor
+- Allocating 2 GB memory for Spark driver and Spark executor
 - Running in local mode (`--master 'local[*]'`)
 
 ```bash
 # make sure you are in the labs root dir
-$   cd  data-pipelining-with-spark-labs-101
+$   cd  data-pipelining-with-spark-labs-101/03-data-generator
 
-$   spark-shell   --driver-memory 4g \
-          --executor-memory 4g   --master 'local[*]' \
-          -i 03-data-generator/datagen-tx-large.scala
+$   spark-shell   --driver-memory 2g \
+          --executor-memory 2g   --master 'local[*]' \
+          -i datagen-tx-large.scala
 
 ```
 
 ### To Run on cluster
 
 Arguments explained:
-- Allocating 4 GB memory for Spark driver and Spark executor
+- Allocating 2 GB memory for Spark driver and Spark executor
 - Connecting to YARN cluster (`--master yarn`)
 
 ```bash
 # make sure you are in the labs root dir
-$   cd  data-pipelining-with-spark-labs-101
+$   cd  data-pipelining-with-spark-labs-101/03-data-generator
 
-$   spark-shell   --driver-memory 4g \
-          --executor-memory 4g   --master yarn \
-          -i 03-data-generator/datagen-tx-large.scala
+$   spark-shell   --driver-memory 2g \
+          --executor-memory 2g   --master yarn \
+          -i datagen-tx-large.scala
 
 ```
 
 ## Step-3: Inspect generated data
 
 ```bash
-$   hdfs dfs -ls  transactions/a
+$   hdfs dfs -ls  transactions/large
 ```
 
 The files will be in CSV directory.  Note the following:
@@ -91,7 +92,6 @@ The files will be in CSV directory.  Note the following:
 
 Adjust the settings and rerun the above script to generate data of various sizes
 
-
 Here are some stats from  sample runs.
 
 sample run 1:
@@ -99,9 +99,11 @@ sample run 1:
 - rows = 1 million
 - partitions = 10
 - each partition is about 17 MB
+- location : transcations/large
 
 Sample run 2:
 
 - Rows = 10 million
 - partitions = 10
 - each partition is about 173 MB
+- location : transcations/large2

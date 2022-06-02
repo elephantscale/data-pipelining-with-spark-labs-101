@@ -56,7 +56,7 @@ When submitting to YARN, we can tweak some settings.
 
 ```bash
 $   pyspark --master yarn --deploy-mode client \
-            --executor-memory 4g  \
+            --executor-memory 2g  \
             --num-executors 6
 ```
 

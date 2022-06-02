@@ -101,7 +101,7 @@ First test on local mode:
 ```bash
 $   cd  data-pipelining-with-spark-labs-101/03-data-generator
 $   spark-shell --master 'local[*]' \
-                --driver-memory 4g  --executor-memory 4g \
+                --driver-memory 2g  --executor-memory 2g \
                 -i datagen-tx-large.scala
 ```
 
@@ -110,7 +110,7 @@ To run on Hadoop cluster,
 ```bash
 $   cd  data-pipelining-with-spark-labs-101/03-data-generator
 $   spark-shell --master yarn \
-                --driver-memory 4g  --executor-memory 4g \
+                --driver-memory 2g  --executor-memory 2g \
                 -i datagen-tx-large.scala
 ```
 
