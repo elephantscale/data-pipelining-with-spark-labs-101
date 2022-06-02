@@ -16,23 +16,25 @@ Plese follow the guidelines provided to you by the instructor, to gain access to
 
 ## Step-2 : Copying files into HDFS
 
-You will have a home directory in HDFS under `/user` directory.  So if your name is `mrmeow` your home directory in HDFS will be `/user/mrmeow`
+You will have a home directory in HDFS under `/user` directory.  So if your name is `root` your home directory in HDFS will be `/user/root`
 
 Let's create this directory, if it doesn't exist
 
-Note : Replace user name `mrmeow` with your own username :-)
+Note : Replace user name `root` with your own username :-)
 
 ```bash
-$       hdfs  dfs mkdir -p   /user/mrmeow/
+$       hdfs  dfs -ls -p   /user/
+# if you see /user/root directory, you can skip the next step
+$       hdfs  dfs -mkdir -p   /user/root/
 ```
 
 Next create a directory for transaction data
 
 ```bash
-$       hdfs  dfs mkdir -p  transactions/sample
+$       hdfs  dfs -mkdir -p  transactions/sample
 
 # if the above command fails, specify the full path
-$       hdfs  dfs mkdir -p  /user/mrmeow/transactions/sample
+$       hdfs  dfs mkdir -p  /user/root/transactions/sample
 ```
 
 Copy some sample data into HDFS.  We have some data in `data/transactions` directory
@@ -40,6 +42,7 @@ Copy some sample data into HDFS.  We have some data in `data/transactions` direc
 ```bash
 # make sure you are in the project dir
 
+$       cd  data-pipelining-with-spark-labs-101
 $       hdfs   dfs -put  data/transactions/transactions-sample.csv    transactions/sample/
 
 # verify the file is copied successfully
@@ -67,7 +70,12 @@ And load the file as follows in Spark shell.  To access HDFS files, we may need 
     - You will need to adjust the URL according to your cluster settings
 
 ```python
-df = spark.read.csv('/user/mrmeow/transactions/sample/', header=True)
+# specify relative path
+df = spark.read.csv('transactions/sample/', header=True)
+
+# if the above doesn't work, specify full path
+df = spark.read.csv('/user/root/transactions/sample/', header=True)
+
 df.count()
 df.show()
 ```
