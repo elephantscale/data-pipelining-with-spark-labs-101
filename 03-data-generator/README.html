@@ -154,12 +154,12 @@
 <p>First test on local mode:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/03-data-generator</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-shell <span class="at">--master</span> <span class="st">&#39;local[*]&#39;</span> <span class="dt">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">--driver-memory</span> 4g  <span class="at">--executor-memory</span> 4g <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">--driver-memory</span> 2g  <span class="at">--executor-memory</span> 2g <span class="dt">\</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">-i</span> datagen-tx-large.scala</span></code></pre></div>
 <p>To run on Hadoop cluster,</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   cd  data-pipelining-with-spark-labs-101/03-data-generator</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   spark-shell <span class="at">--master</span> yarn <span class="dt">\</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">--driver-memory</span> 4g  <span class="at">--executor-memory</span> 4g <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">--driver-memory</span> 2g  <span class="at">--executor-memory</span> 2g <span class="dt">\</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">-i</span> datagen-tx-large.scala</span></code></pre></div>
 <p><strong>ACTION: Generate transaction data in CSV format</strong>:</p>
 <ul>

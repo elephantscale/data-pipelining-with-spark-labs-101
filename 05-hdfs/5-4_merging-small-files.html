@@ -13,7 +13,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load small partition data</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> spark.read.csv(<span class="st">&#39;/user/me/transactions/a/csv&#39;</span>, header<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> spark.read.csv(<span class="st">&#39;transactions/large/csv&#39;</span>, header<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># See how many partitions we have</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df1.rdd.getNumPartitions()</span>
@@ -22,9 +22,9 @@
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df1.repartition(<span class="dv">5</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># save the new data</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>df2.write.mode(<span class="st">&#39;overwrite&#39;</span>).csv(<span class="st">&#39;/user/me/transactions/a2/&#39;</span>)</span></code></pre></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>df2.write.mode(<span class="st">&#39;overwrite&#39;</span>).csv(<span class="st">&#39;transactions/large3/&#39;</span>)</span></code></pre></div>
 <p>Now let’s inspect the generated data</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   hdfs dfs <span class="at">-ls</span> /user/me/transactions/a/csv</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   hdfs dfs <span class="at">-ls</span> transactions/large/csv</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   hdfs dfs <span class="at">-ls</span> /user/me/transactions/a2/csv</span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   hdfs dfs <span class="at">-ls</span> transactions/large3/csv</span></code></pre></div>
 <p>Do you notice the partition size difference?</p>

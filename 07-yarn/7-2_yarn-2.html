@@ -35,7 +35,7 @@
 <h2 id="step-2-optimize-the-query">Step-2: Optimize the Query</h2>
 <p>When submitting to YARN, we can tweak some settings.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span>   pyspark <span class="at">--master</span> yarn <span class="at">--deploy-mode</span> client <span class="dt">\</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">--executor-memory</span> 4g  <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">--executor-memory</span> 2g  <span class="dt">\</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">--num-executors</span> 6</span></code></pre></div>
 <p>Parameters explained:</p>
 <ul>
