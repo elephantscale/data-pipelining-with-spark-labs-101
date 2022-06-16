@@ -73,6 +73,8 @@ $   conda list
 Open a **new** terminal and run the following command
 
 ```bash
+$   conda activate pyspark  # if needed
+
 $   conda install numpy  pandas  matplotlib  seaborn  jupyter  jupyterlab
 $   conda install -c conda-forge findspark
 ```
