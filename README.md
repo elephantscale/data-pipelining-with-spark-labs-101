@@ -6,8 +6,8 @@
 - [01 - Spark Basics](01-basics/README.md)
 - [02 - Dataframes](02-dataframes/README.md)
 - [03 - Data Generator](03-data-generator/README.md)
-- [04 - Spark SQL](04-spark-sql/README-Spark.md)
-- [05 - Spark and HDFS](05-hdfs/README-Spark.md)
-- [06 - Spark Hive](06-hive/README-Spark.md)
+- [04 - Spark SQL](04-spark-sql/README.md)
+- [05 - Spark and HDFS](05-hdfs/README.md)
+- [06 - Spark Hive](06-hive/README.md)
 - [07 - Spark and YARN](07-yarn/README.md)
 
