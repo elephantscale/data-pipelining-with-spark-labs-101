@@ -14,6 +14,12 @@ A quick test to accessing HDFS files from Spark
 
 Plese follow the guidelines provided to you by the instructor, to gain access to Hadoop cluster
 
+### Get the labs
+
+```bash
+$   git clone https://github.com/elephantscale/data-pipelining-with-spark-labs-101
+```
+
 ## Step-2 : Copying files into HDFS
 
 You will have a home directory in HDFS under `/user` directory.  So if your name is `root` your home directory in HDFS will be `/user/root`
@@ -26,6 +32,7 @@ Note : Replace user name `root` with your own username :-)
 $       hdfs  dfs -ls -p   /user/
 # if you see /user/root directory, you can skip the next step
 $       hdfs  dfs -mkdir -p   /user/root/
+$       hdfs  dfs -ls   /user/root/
 ```
 
 Next create a directory for transaction data
@@ -61,12 +68,12 @@ $       pyspark
 And load the file as follows in Spark shell.  To access HDFS files, we may need to specify full path
 
 - start with simple path `transactions/sample/`
-- if that doesn't work, specify full path :   `/user/mrmeow/transactions/sample`  (change username `mrmeow` to yours, of course)
+- if that doesn't work, specify full path :   `/user/root/transactions/sample`  (change username `root` to yours, of course)
 - If that doesn't work, specify full HDFS URL as follows.
     - URL will start with `hdfs://`  (just like `http://`)
     - It will include fully qualified hostname of Hadoop namenode
     - And then will have full path of files or directories
-    - `hdfs://nn1.company.com/user/mrmeow/transactions/sample/`
+    - `hdfs://nn1.company.com/user/root/transactions/sample/`
     - You will need to adjust the URL according to your cluster settings
 
 ```python
@@ -75,6 +82,9 @@ df = spark.read.csv('transactions/sample/', header=True)
 
 # if the above doesn't work, specify full path
 df = spark.read.csv('/user/root/transactions/sample/', header=True)
+
+# or 
+df = spark.read.csv('hdfs:///user/root/transactions/sample/', header=True)
 
 df.count()
 df.show()
