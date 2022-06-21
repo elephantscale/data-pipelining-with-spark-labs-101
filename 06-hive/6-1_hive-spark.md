@@ -142,10 +142,10 @@ hive>
     select AVG(amount_customer) from transactions;
 ```
 
-## Step-4: Now launch Spark Shell
+## Step-4: Now launch PySpark
 
 ```bash
-$   spark-shell --master yarn
+$   pyspark --master yarn
 ```
 
 When the shell launches, you will see messages that it is connected to Hive.
@@ -153,13 +153,13 @@ When the shell launches, you will see messages that it is connected to Hive.
 Specifying a custom port
 
 ```bash
-    $   spark-shell  --conf spark.ui.port=4060
+    $   pyspark  --conf spark.ui.port=4060
 ```
 
 Turn off UI altogether  
 
 ```bash
-    $   spark-shell  --conf spark.ui.enabled=false
+    $   pyspark  --conf spark.ui.enabled=false
 ```
 
 Turn off logs
